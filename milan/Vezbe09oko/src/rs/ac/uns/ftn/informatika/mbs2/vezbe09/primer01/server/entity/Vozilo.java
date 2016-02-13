@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@Entity
 @Table(name = "vozilo")
 @NamedQuery(name = "findVozilaSaKlimom", query = "SELECT v FROM Vozilo v WHERE v.voziloImaKlimaUredjaj is true")
 public class Vozilo implements Serializable {
