@@ -15,31 +15,32 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Table(name = "menjac")
-public class Menjac implements Serializable {
+@Entity
+@Table(name = "gorivo")
+public class Gorivo implements Serializable {
 
-	private static final long serialVersionUID = -2826662337682629767L;
+	private static final long serialVersionUID = -7070493936527350889L;
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "menjac_id", unique = true, nullable = false)
+	@Column(name = "gorivo_id", unique = true, nullable = false)
 	private Integer id;
 
-	@Column(name = "menjac_tip", unique = false, nullable = false)
-	private String tipMenjaca;
+	@Column(name = "gorivo_tip", unique = false, nullable = false)
+	private String tipGoriva;
 
-	@OneToMany(cascade = { ALL }, fetch = LAZY, mappedBy = "menjac")
+	@OneToMany(cascade = { ALL }, fetch = LAZY, mappedBy = "gorivo")
 	private Set<Vozilo> vozila = new HashSet<Vozilo>();
 
 	public void add(Vozilo v) {
-		if (v.getMenjac() != null)
-			v.getMenjac().getVozila().remove(v);
-		v.setMenjac(this);
+		if (v.getGorivo() != null)
+			v.getGorivo().getVozila().remove(v);
+		v.setGorivo(this);
 		vozila.add(v);
 	}
 
 	public void remove(Vozilo v) {
-		v.setMenjac(null);
+		v.setGorivo(null);
 		vozila.remove(v);
 	}
 
@@ -51,12 +52,12 @@ public class Menjac implements Serializable {
 		this.id = id;
 	}
 
-	public String getTipMenjaca() {
-		return tipMenjaca;
+	public String getTipGoriva() {
+		return tipGoriva;
 	}
 
-	public void setTipMenjaca(String tipMenjaca) {
-		this.tipMenjaca = tipMenjaca;
+	public void setTipGoriva(String tipGoriva) {
+		this.tipGoriva = tipGoriva;
 	}
 
 	public Set<Vozilo> getVozila() {
@@ -67,17 +68,18 @@ public class Menjac implements Serializable {
 		this.vozila = vozila;
 	}
 
-	public Menjac() {
+	public Gorivo() {
 		super();
 	}
 
-	public Menjac(String tipMenjaca, Set<Vozilo> vozila) {
+	public Gorivo(String tipGoriva, Set<Vozilo> vozila) {
 		super();
-		this.tipMenjaca = tipMenjaca;
+		this.tipGoriva = tipGoriva;
 		this.vozila = vozila;
 	}
 
 	public String toString() {
-		return "(Gorivo)[id=" + id + ",tip menjaca=" + tipMenjaca + "]";
+		return "(Gorivo)[id=" + id + ",tip goriva=" + tipGoriva + "]";
 	}
+
 }

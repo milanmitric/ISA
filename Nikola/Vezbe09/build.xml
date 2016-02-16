@@ -32,7 +32,7 @@
 		</fail>
 	</target>
 	
-	<target name="check-environment" depends="clean">
+	<target name="check-environment">
 		<antcall target="check-tomee" />
 	</target>
 
@@ -130,10 +130,6 @@
 			DROP TABLE IF EXISTS gorivo;
 			DROP TABLE IF EXISTS menjac;
 			DROP TABLE IF EXISTS korisnik;
-			DROP TABLE IF EXISTS jelovnik;
-			DROP TABLE IF EXISTS restoran;
-			DROP TABLE IF EXISTS sto;
-			
 			
 		</sql>
 	</target>
