@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -19,7 +20,11 @@ public class ReadController extends HttpServlet {
 	private static final long serialVersionUID = -6820366488786163882L;
 	
 	private static Logger log = Logger.getLogger(ReadController.class);
-
+	
+	private enum tip_stavke {
+		HRANA,PICE;
+	}
+	
 	@EJB
 	private VoziloDaoLocal voziloDao;
 	@EJB
@@ -31,18 +36,23 @@ public class ReadController extends HttpServlet {
 		
 		try {
 			
-			if ((request.getSession().getAttribute("admin")) == null) {
+			if ((request.getSession().getAttribute("admin") == null)
+					&& (request.getSession().getAttribute("menadzer")) == null
+					&& (request.getSession().getAttribute("korisnik") == null)) {
 				response.sendRedirect(response.encodeURL("./login.jsp"));
 				return;
 			}
 
-			request.setAttribute("vozila", voziloDao.findAll());
-			request.getServletContext().setAttribute("restorani", restoranDao.findAll());
+			request.getServletContext().setAttribute("restorani", restoranDao.findAllOrederedName());
 			request.getServletContext().setAttribute("jelovnici", jelovnikDao.findAll());
 			
-			for(int i = 1 ; i<= jelovnikDao.findAll().size(); i++){
-				System.out.println("JELOVNIk" + jelovnikDao.findById(i));
+			HashSet<tip_stavke> tipovi = new HashSet<tip_stavke>();
+			
+			for(tip_stavke tip: tip_stavke.values())
+			{ 
+				tipovi.add(tip); 
 			}
+			request.getServletContext().setAttribute("tipovi_stavke", tipovi);
 			
 			getServletContext().getRequestDispatcher("/read.jsp").forward(request, response);
 		

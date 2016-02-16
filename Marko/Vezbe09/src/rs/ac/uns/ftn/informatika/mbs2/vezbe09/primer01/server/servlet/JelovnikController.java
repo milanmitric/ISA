@@ -10,67 +10,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Jelovnik;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.StavkaJelovnika;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.JelovnikDaoLocal;
-import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.StavkaJelovnikaDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 
-public class StavkaController extends HttpServlet{
-
-	private static final long serialVersionUID = 1L;
+public class JelovnikController extends HttpServlet{
 
 	
-	@EJB
-	private StavkaJelovnikaDaoLocal stavkaDao;
+	private static final long serialVersionUID = -2933830682713498595L;
 	
 	@EJB
 	private JelovnikDaoLocal jelovnikDao;
+	
+	@EJB
+	private RestoranDaoLocal restoranDao;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		String naziv = request.getParameter("naziv");
 		if ((request.getSession().getAttribute("admin") == null)
 				&& (request.getSession().getAttribute("menadzer")) == null) {
 			response.sendRedirect(response.encodeURL("./login.jsp"));
 			return;
 		}
-		
-		
-		
-		String naziv = request.getParameter("naziv");
-		String tip = request.getParameter("tip");
-		String opis = request.getParameter("opis");
-		
-		Integer jelovnik = 0;
-		
-		try{
-			jelovnik = Integer.parseInt(request.getParameter("itemId"));
-		}catch(NumberFormatException e){
-			
-		}
-		
-		Integer cena = 0;
-		
-		try{
-			cena = Integer.parseInt(request.getParameter("cena"));
-		}catch(NumberFormatException e){
-			
-		}
-		
-		Jelovnik j = jelovnikDao.findById(jelovnik);
-		
-		
-		StavkaJelovnika stavka = new StavkaJelovnika();
-		stavka.setNazivStavke(naziv);
-		stavka.setOpisStavke(opis);
-		stavka.setTipStavke(tip);
-		stavka.setJelovnik(j);
-		stavka.setCenaStavke(cena);
-		
-		stavkaDao.persist(stavka);
-		
-		@SuppressWarnings("unchecked")
-		ArrayList<StavkaJelovnika> stavke = (ArrayList<StavkaJelovnika>) request.getServletContext().getAttribute("stavkaID");
-		stavke.add(stavka);
+	
+		Restoran restoran = (Restoran)request.getServletContext().getAttribute("restoranID");
+		ArrayList<StavkaJelovnika> stavke = new ArrayList<StavkaJelovnika>();
 		request.getServletContext().setAttribute("stavkaID", stavke);
+		Jelovnik jelovnik = new Jelovnik();
+		jelovnik.setNazivJelovnika(naziv);
+		restoran.setJelovnik(jelovnik);
+		
+		jelovnikDao.persist(jelovnik);
+		restoranDao.merge(restoran);
 		
 		getServletContext().getRequestDispatcher("/PrikazRestorana.jsp").forward(request, response);
 		return;
@@ -79,4 +52,5 @@ public class StavkaController extends HttpServlet{
 	protected void doPost(HttpServletRequest request, 	HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 }
