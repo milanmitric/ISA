@@ -11,19 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.GorivoDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.MenadzerDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.MenjacDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.VoziloDaoLocal;
 
-public class PrepareCreateController extends HttpServlet {
+public class PrepareUpdateManagerController extends HttpServlet {
 
-	private static final long serialVersionUID = 5161949512237886627L;
+	private static final long serialVersionUID = 1069341894540010096L;
 	
-	private static Logger log = Logger.getLogger(PrepareCreateController.class);
+	private static Logger log = Logger.getLogger(PrepareUpdateController.class);
 
 	@EJB
-	private MenjacDaoLocal menjacDao;
+	private MenadzerDaoLocal menadzerDao; 
 
-	@EJB
-	private GorivoDaoLocal gorivoDao;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -34,9 +35,15 @@ public class PrepareCreateController extends HttpServlet {
 				return;
 			}
 
+			
 
-			getServletContext().getRequestDispatcher("/create.jsp").forward(request, response);
+			String id = request.getParameter("menadzerId");
 
+			if ((id != null) && (!id.equals(""))) {
+				request.getSession(true).setAttribute("menadzer", menadzerDao.findById(Integer.parseInt(id)));
+				getServletContext().getRequestDispatcher("/updateManager.jsp").forward(request, response);
+			}
+			
 		} catch (ServletException e) {
 			log.error(e);
 			throw e;
@@ -46,7 +53,7 @@ public class PrepareCreateController extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, 	HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 }

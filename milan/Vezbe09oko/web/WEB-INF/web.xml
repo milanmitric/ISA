@@ -17,8 +17,18 @@
    </servlet>
    
    <servlet>
+      <servlet-name>PrepareManagersController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareManagersController</servlet-class>
+   </servlet>
+   
+   <servlet>
       <servlet-name>CreateController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.CreateController</servlet-class>
+   </servlet>
+   
+    <servlet>
+      <servlet-name>CreateManagerController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.CreateManagerController</servlet-class>
    </servlet>
    
    <servlet>
@@ -45,10 +55,30 @@
       <servlet-name>RegisterController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.RegisterController</servlet-class>
    </servlet>
+   
+   <servlet>
+      <servlet-name>PrepareAddTablesController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareAddTablesController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>AddTableController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.AddTableController</servlet-class>
+   </servlet>
+   
+      <servlet>
+      <servlet-name>ManagerLoginController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ManagerLoginController</servlet-class>
+   </servlet>
 	
    <servlet-mapping>
       <servlet-name>LogoutController</servlet-name>
       <url-pattern>/LogoutController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>PrepareManagersController</servlet-name>
+      <url-pattern>/PrepareManagersController</url-pattern>
    </servlet-mapping>
    
    <servlet-mapping>
@@ -64,6 +94,11 @@
    <servlet-mapping>
       <servlet-name>CreateController</servlet-name>
       <url-pattern>/CreateController</url-pattern>
+   </servlet-mapping>
+   
+      <servlet-mapping>
+      <servlet-name>CreateManagerController</servlet-name>
+      <url-pattern>/CreateManagerController</url-pattern>
    </servlet-mapping>
    
    <servlet-mapping>
@@ -91,6 +126,22 @@
       <url-pattern>/RegisterController</url-pattern>
    </servlet-mapping>
    
+   <servlet-mapping>
+      <servlet-name>PrepareAddTablesController</servlet-name>
+      <url-pattern>/PrepareAddTablesController</url-pattern>
+   </servlet-mapping>
+   
+    <servlet-mapping>
+      <servlet-name>AddTableController</servlet-name>
+      <url-pattern>/AddTableController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>ManagerLoginController</servlet-name>
+      <url-pattern>/ManagerLoginController</url-pattern>
+   </servlet-mapping>
+   
+   
    <welcome-file-list>
    		<welcome-file>/login.jsp</welcome-file>
    </welcome-file-list>
@@ -104,5 +155,46 @@
    		<error-code>404</error-code>
    		<location>/404.jsp</location>
    </error-page> 
+   
+   
+   
+   
+   <servlet>
+      <servlet-name>PrepareUpdateManagerController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareUpdateManagerController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>UpdateManagerController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.UpdateManagerController</servlet-class>
+   </servlet>
+   
+   
+   <servlet-mapping>
+      <servlet-name>PrepareUpdateManagerController</servlet-name>
+      <url-pattern>/PrepareUpdateManagerController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>UpdateManagerController</servlet-name>
+      <url-pattern>/UpdateManagerController</url-pattern>
+   </servlet-mapping>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 </web-app>

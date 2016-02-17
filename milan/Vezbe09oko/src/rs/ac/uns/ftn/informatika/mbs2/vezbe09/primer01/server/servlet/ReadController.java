@@ -1,5 +1,6 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
+import java.io.Console;
 import java.io.IOException;
 
 import javax.ejb.EJB;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.VoziloDaoLocal;
 
 public class ReadController extends HttpServlet {
@@ -19,20 +21,23 @@ public class ReadController extends HttpServlet {
 	private static Logger log = Logger.getLogger(ReadController.class);
 
 	@EJB
-	private VoziloDaoLocal voziloDao;
+	private RestoranDaoLocal restoranDao;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			
-			if ((request.getSession().getAttribute("admin")) == null) {
+			if ((request.getSession().getAttribute("admin")) != null){
+				request.getServletContext().setAttribute("restorani",restoranDao.findAll());
+				getServletContext().getRequestDispatcher("/welcomeAdmin.jsp").forward(request, response);
+			} 
+			else {
 				response.sendRedirect(response.encodeURL("./login.jsp"));
 				return;
 			}
 
-			request.setAttribute("vozila", voziloDao.findAll());
 			
-			getServletContext().getRequestDispatcher("/read.jsp").forward(request, response);
+			
+			
 		
 		} catch (ServletException e) {
 			log.error(e);

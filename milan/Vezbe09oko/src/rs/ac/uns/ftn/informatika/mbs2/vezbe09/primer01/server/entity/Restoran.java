@@ -33,16 +33,19 @@ public class Restoran implements Serializable{
 	private String nazivRestorana;
 
 	@Column(unique = false, nullable = false)
-	private String adresaRestoran;
+	private String adresaRestorana;
 	
 	@Column( unique = false, nullable = false)
-	private String mailRestoran;
+	private String mailRestorana;
 	
 	@Column(unique = false, nullable = false)
-	private String telefonRestoran;
+	private String telefonRestorana;
 	
 	@Column(unique = false, nullable = false)
-	private Integer udaljenostRestoran;
+	private Integer udaljenostRestorana;
+	
+	@Column(unique = false, nullable = false)
+	private Integer kapacitet;
 	
 	@ManyToOne
 	@JoinColumn(name = "jelovnik_fk", nullable = false)
@@ -50,8 +53,7 @@ public class Restoran implements Serializable{
 
 	@OneToMany(cascade = { ALL }, fetch = LAZY, mappedBy = "restoran")
 	private Set<Sto> stolovi = new  HashSet<>();
-	
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -68,36 +70,36 @@ public class Restoran implements Serializable{
 		this.nazivRestorana = nazivRestorana;
 	}
 
-	public String getAdresaRestoran() {
-		return adresaRestoran;
+	public String getAdresaRestorana() {
+		return adresaRestorana;
 	}
 
-	public void setAdresaRestoran(String adresaRestoran) {
-		this.adresaRestoran = adresaRestoran;
+	public void setAdresaRestorana(String adresaRestorana) {
+		this.adresaRestorana = adresaRestorana;
 	}
 
-	public String getMailRestoran() {
-		return mailRestoran;
+	public String getMailRestorana() {
+		return mailRestorana;
 	}
 
-	public void setMailRestoran(String mailRestoran) {
-		this.mailRestoran = mailRestoran;
+	public void setMailRestorana(String mailRestorana) {
+		this.mailRestorana = mailRestorana;
 	}
 
-	public String getTelefonRestoran() {
-		return telefonRestoran;
+	public String getTelefonRestorana() {
+		return telefonRestorana;
 	}
 
-	public void setTelefonRestoran(String telefonRestoran) {
-		this.telefonRestoran = telefonRestoran;
+	public void setTelefonRestorana(String telefonRestorana) {
+		this.telefonRestorana = telefonRestorana;
 	}
 
-	public Integer getUdaljenostRestoran() {
-		return udaljenostRestoran;
+	public Integer getUdaljenostRestorana() {
+		return udaljenostRestorana;
 	}
 
-	public void setUdaljenostRestoran(Integer udaljenostRestoran) {
-		this.udaljenostRestoran = udaljenostRestoran;
+	public void setUdaljenostRestorana(Integer udaljenostRestorana) {
+		this.udaljenostRestorana = udaljenostRestorana;
 	}
 
 	public Jelovnik getJelovnik() {
@@ -108,11 +110,6 @@ public class Restoran implements Serializable{
 		this.jelovnik = jelovnik;
 	}
 
-	public Restoran() {
-		super();
-	}
-
-
 	public Set<Sto> getStolovi() {
 		return stolovi;
 	}
@@ -120,4 +117,17 @@ public class Restoran implements Serializable{
 	public void setStolovi(Set<Sto> stolovi) {
 		this.stolovi = stolovi;
 	}
+
+	public Integer getKapacitet() {
+		return kapacitet;
+	}
+
+	public void setKapacitet(Integer kapacitet) {
+		this.kapacitet = kapacitet;
+	}
+	
+	
+	
+	
+	
 }

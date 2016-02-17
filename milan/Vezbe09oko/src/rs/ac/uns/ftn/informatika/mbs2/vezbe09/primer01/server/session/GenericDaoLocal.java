@@ -22,5 +22,6 @@ public interface GenericDaoLocal<T, ID extends Serializable> {
 	public void flush();
 
 	public void clear();
+	
 
 }

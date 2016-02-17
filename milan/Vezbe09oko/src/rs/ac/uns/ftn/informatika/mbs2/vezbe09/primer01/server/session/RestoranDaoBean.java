@@ -10,11 +10,12 @@ import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 public class RestoranDaoBean extends GenericDaoBean<Restoran, Integer> 
 	implements RestoranDaoLocal{
 	
+	@Override
 	public void remove(Restoran r) {
-		
 		r = em.merge(r);
-		r.getJelovnik().getRestorani().remove(r);
+		//r.getJelovnik().getRestorani().remove(r);
 		em.remove(r);
+		System.out.println("izbrisano");
 	}
 
 }
