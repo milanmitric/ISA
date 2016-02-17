@@ -1,8 +1,12 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity;
 
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +31,9 @@ public class Restoran implements Serializable{
 
 	@Column(name = "restoran_naziv", unique = false, nullable = false)
 	private String nazivRestorana;
+	
+	@Column(name = "restoran_tip", unique = false, nullable = false)
+	private String tipRestoran;
 
 	@Column(name = "restoran_adresa", unique = false, nullable = false)
 	private String adresaRestoran;
@@ -40,8 +48,18 @@ public class Restoran implements Serializable{
 	private Integer udaljenostRestoran;
 	
 	@ManyToOne
-	@JoinColumn(name = "jelovnik_id", referencedColumnName = "jelovnik_id", nullable = false)
+	@JoinColumn(name = "jelovnik_id", referencedColumnName = "jelovnik_id", nullable = true)
 	private Jelovnik jelovnik;
+	
+	@Column(name = "restoran_red", unique = false, nullable = true)
+	private Integer red;
+	
+	@Column(name = "restoran_kolona", unique = false, nullable = true)
+	private Integer kolona;
+	
+
+	@OneToMany(cascade = { ALL }, fetch = LAZY, mappedBy = "restoran")
+	private Set<Menadzer> menadzeri = new HashSet<Menadzer>();
 
 	public Integer getId() {
 		return id;
@@ -98,6 +116,39 @@ public class Restoran implements Serializable{
 	public void setJelovnik(Jelovnik jelovnik) {
 		this.jelovnik = jelovnik;
 	}
+	
+	public Set<Menadzer> getMenadzeri() {
+		return menadzeri;
+	}
+
+	public void setMenadzeri(Set<Menadzer> menadzeri) {
+		this.menadzeri = menadzeri;
+	}
+
+
+	public Integer getRed() {
+		return red;
+	}
+
+	public void setRed(Integer red) {
+		this.red = red;
+	}
+
+	public Integer getKolona() {
+		return kolona;
+	}
+
+	public void setKolona(Integer kolona) {
+		this.kolona = kolona;
+	}
+	
+	public String getTipRestoran() {
+		return tipRestoran;
+	}
+
+	public void setTipRestoran(String tipRestoran) {
+		this.tipRestoran = tipRestoran;
+	}
 
 	public Restoran() {
 		super();
@@ -105,19 +156,19 @@ public class Restoran implements Serializable{
 
 	public Restoran(String nazivRestorana, String adresaRestoran,
 			String mailRestoran, Integer telefonRestoran,
-			Integer udaljenostRestoran, Jelovnik jelovnik) {
+			Integer udaljenostRestoran, Jelovnik jelovnik,
+			Set<Menadzer> menadzeri, String tip, Integer red, Integer kolona){
 		super();
 		this.nazivRestorana = nazivRestorana;
 		this.adresaRestoran = adresaRestoran;
 		this.mailRestoran = mailRestoran;
 		this.telefonRestoran = telefonRestoran;
 		this.udaljenostRestoran = udaljenostRestoran;
-		jelovnik.add(this);
+		this.jelovnik = jelovnik;
+		this.menadzeri = menadzeri;
+		this.tipRestoran = tip;
+		this.red = red;
+		this.kolona = kolona;
 	}
-	
-	
-	
-	
-	
 
 }

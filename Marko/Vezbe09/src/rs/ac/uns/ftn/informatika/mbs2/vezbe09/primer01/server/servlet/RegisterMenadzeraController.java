@@ -10,37 +10,49 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Korisnik;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Menadzer;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.KorisnikDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.MenadzerDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 
-public class RegisterController extends HttpServlet{
 
-	private static final long serialVersionUID = 1L;
 
-	
-	private static Logger log = Logger.getLogger(RegisterController.class);
+public class RegisterMenadzeraController extends HttpServlet{
 
-	@EJB
-	private KorisnikDaoLocal korisnikDao;
+	private static final long serialVersionUID = 7538354551030056092L;
 	
 	@EJB
 	private MenadzerDaoLocal menadzerDao;
-
+	
+	@EJB 
+	private RestoranDaoLocal restoranDao;
+	
+	@EJB
+	private KorisnikDaoLocal korisnikDao;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
+		if ((request.getSession().getAttribute("admin") == null)) {
+			response.sendRedirect(response.encodeURL("./login.jsp"));
+			return;
+		}
 		
 		String korisnickoIme = request.getParameter("korisnicko_ime");
 		String lozinka = request.getParameter("lozinka");
 		String ime = request.getParameter("ime");
 		String prezime = request.getParameter("prezime");
 		String lozinka2 = request.getParameter("lozinka2");
+		
+		Integer id_restorana = 1;
+		
+		try{
+			id_restorana = Integer.parseInt(request.getParameter("restoran"));
+		}catch(NumberFormatException e){
+			
+		}
 		
 		if(!lozinka2.equals(lozinka))
 		{
@@ -49,67 +61,64 @@ public class RegisterController extends HttpServlet{
 			request.setAttribute("ime", ime);
 			request.setAttribute("prezime", prezime);
 			request.setAttribute("korisnicko_ime", korisnickoIme);
-			RequestDispatcher disp = request.getRequestDispatcher("./register.jsp");
+			RequestDispatcher disp = request.getRequestDispatcher("./DodajMenadzera.jsp");
 			disp.forward(request, response);
 		}else
 		{
 			try {
 				
-				Korisnik korisnik = korisnikDao.findKorisnikSaKorisnickimImenom(korisnickoIme);
+				Menadzer korisnik = menadzerDao.findMenadzerSaKorisnickimImenom(korisnickoIme);
+				
 				if (korisnik != null) {	
 	
-					String errorMessage = "Postoji korisnik sa tim korisnickim imenom.";
+					String errorMessage = "Postoji menadzer sa tim korisnickim imenom.";
 					request.setAttribute("errormessage", errorMessage);
-					RequestDispatcher disp = request.getRequestDispatcher("./register.jsp");
+					RequestDispatcher disp = request.getRequestDispatcher("./DodajMenadzera.jsp");
 					disp.forward(request, response);
 				}
 				
 			} catch (EJBException e) {
 				if (e.getCause().getClass().equals(NoResultException.class)) {
-				
-					try{
-						Menadzer menadzer = menadzerDao.findMenadzerSaKorisnickimImenom(korisnickoIme);
-						if (menadzer != null) {	
+					
+					try {
+						
+						Korisnik korisnik = korisnikDao.findKorisnikSaKorisnickimImenom(korisnickoIme);
+						if (korisnik != null) {	
 			
 							String errorMessage = "Postoji korisnik sa tim korisnickim imenom.";
 							request.setAttribute("errormessage", errorMessage);
-							RequestDispatcher disp = request.getRequestDispatcher("./register.jsp");
+							RequestDispatcher disp = request.getRequestDispatcher("./DodajMenadzera.jsp");
 							disp.forward(request, response);
 						}
-					}catch (EJBException ej) {
+						
+					} catch (EJBException ej) {
 						if (ej.getCause().getClass().equals(NoResultException.class)) {
 							
-							Korisnik noviKorisnik = new Korisnik(ime, prezime, korisnickoIme, lozinka);
+							Restoran restoran = restoranDao.findById(id_restorana);
 							
-							korisnikDao.persist(noviKorisnik);
+							Menadzer noviKorisnik = new Menadzer(ime, prezime, korisnickoIme, lozinka, restoran, null, false);
 							
+							menadzerDao.persist(noviKorisnik);
 							
-							HttpSession session = request.getSession(true);
-							session.setAttribute("korisnik", noviKorisnik);
-							log.info("Korisnik " + noviKorisnik.getKorisnickoImeKorisnika() + " se prijavio.");
 							getServletContext().getRequestDispatcher("/ReadController").forward(request, response);
-							
 							
 						} else {
 							throw ej;
 						}
 					} catch (ServletException ej) {
-						log.error(ej);
 						throw ej;
 					} catch (IOException ej) {
-						log.error(ej);
 						throw ej;
 					}
-						
+				
+					
 					
 				} else {
 					throw e;
 				}
 			} catch (ServletException e) {
-				log.error(e);
 				throw e;
 			} catch (IOException e) {
-				log.error(e);
 				throw e;
 			}
 		}
@@ -117,5 +126,8 @@ public class RegisterController extends HttpServlet{
 
 	protected void doPost(HttpServletRequest request, 	HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
-	}
+	}	
+	
+	
+
 }

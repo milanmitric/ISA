@@ -9,22 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
-import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.JelovnikDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 
-public class RestoranController extends HttpServlet{
+public class IzmeniRestoranController extends HttpServlet{
 
-	private static final long serialVersionUID = 6699276854605887078L;
-
+	private static final long serialVersionUID = 845164180121919955L;
+	
 	@EJB
 	private RestoranDaoLocal restoranDao;
 	
-	@EJB
-	private JelovnikDaoLocal jelovnikDao;
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		if ((request.getSession().getAttribute("admin") == null)) {
+		if ((request.getSession().getAttribute("menadzer") == null)) {
 			response.sendRedirect(response.encodeURL("./login.jsp"));
 			return;
 		}
@@ -51,19 +47,25 @@ public class RestoranController extends HttpServlet{
 			
 		}
 		
-		Restoran restoran = new Restoran();
+		Integer id = 0;
+		try
+		{
+			id = Integer.parseInt(request.getParameter("itemId"));
+		}catch(NumberFormatException n)
+		{
+		
+		}
+		
+		Restoran restoran = restoranDao.findById(id);
 		
 		restoran.setNazivRestorana(naziv);
 		restoran.setAdresaRestoran(adresa);
 		restoran.setMailRestoran(mail);
 		restoran.setTelefonRestoran(telefon);
 		restoran.setUdaljenostRestoran(udaljenost);
-		restoran.setJelovnik(null);
 		restoran.setTipRestoran(tip);
-		restoran.setRed(null);
-		restoran.setKolona(null);
 		
-		restoranDao.persist(restoran);
+		restoranDao.merge(restoran);
 		
 		getServletContext().getRequestDispatcher("/ReadController").forward(request, response);
 		return;
@@ -72,4 +74,5 @@ public class RestoranController extends HttpServlet{
 	protected void doPost(HttpServletRequest request, 	HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 }

@@ -16,8 +16,13 @@
 	<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
 	<meta HTTP-EQUIV="Expires" CONTENT="-1">
 </head>
-<body>
 
+	<c:if test="${(empty admin) and (empty menadzer)}">
+				<c:redirect url="./login.jsp" />
+	</c:if>
+	
+<body>
+	<jsp:include page="header.jsp"/>
 	<form class="form-horizontal" id="register_form" role="form" action="./StavkaController" method="post"  accept-charset="UTF-8">
 			
 			<div class="modal-header">
@@ -33,12 +38,17 @@
 					</div>
 				</div>
 				
-				<div class="form-group">
-					<label for="tip" class="col-lg-2 control-label">Tip:</label>
-					<div class="col-lg-10">
-						<input type="text" name="tip" class="form-control" placeholder="Tip" required/>
+				<div class="input_stavka_group form-group">
+						<label for="stavka-tip" class="col-lg-2 control-label">Tip:</label>
+						<div class="col-sm-8">
+							<select name="tip" class="form-control">
+								<c:forEach items="${tipovi_stavke}" var="tipovi">
+									<option value="${tipovi}">"${tipovi}" 
+									</option>
+								</c:forEach>
+							</select>
+						</div>
 					</div>
-				</div>
 				
 				<div class="form-group">
 					
@@ -48,11 +58,19 @@
 					</div>
 				</div>
 				
+				<div class="form-group">
+					<label for="cena" class="col-lg-2 control-label">Cena:</label>
+					<div class="col-lg-10">
+						<input type="text" name="cena" class="form-control" placeholder="Cena" pattern="[0-9]*" title="Samo brojevi su dozvoljeni" required/>
+					</div>
+				</div>
+				
 			</div>
 			
 			<div class="modal-footer">
 				<a href="./login.jsp" class="pull-left">Nazad na logovanje</a>
-				<input class="submit_adding_stavku btn btn-primary pull-right" type="submit" name="submit" value="Potvrdi" />
+				<input type="hidden" name="itemId" value="${restoranID.jelovnik.id}">
+				<input class="btn btn-primary pull-right" type="submit" name="submit" value="Potvrdi" />
 			</div>
 						
 				

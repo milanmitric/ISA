@@ -20,7 +20,7 @@
 <body>
 	<div class="container">
 
-		<form class="form-signin" action="./LoginController" method="post" class="form-signin" accept-charset="ISO-8859-1">
+		<form class="form-signin" action="./MenadzerLoginController" method="post" class="form-signin" accept-charset="ISO-8859-1">
 	        <h1 class="form-signin-heading">Dobrodošli</h1>
 	        <h4 class="form-signin-heading">Molimo Vas da se ulogujete</h4>
 	        

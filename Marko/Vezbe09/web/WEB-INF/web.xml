@@ -55,6 +55,111 @@
       <servlet-name>RestoranController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.RestoranController</servlet-class>
    </servlet>
+   
+   <servlet>
+      <servlet-name>JelovnikController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.JelovnikController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>PrikazRestoranaController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrikazRestoranaController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>MenadzerLoginController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.MenadzerLoginController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>RegisterMenadzeraController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.RegisterMenadzeraController</servlet-class>
+   </servlet>
+
+   <servlet>
+      <servlet-name>ObrisiStavkuController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ObrisiStavkuController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>IzmeniRestoranController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.IzmeniRestoranController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>IzmeniMenadzeraController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.IzmeniMenadzeraController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>IzmeniKorisnikaController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.IzmeniKorisnikaController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>PretraziPrijateljaController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PretraziPrijateljaController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>ObrisiPrijateljaController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ObrisiPrijateljaController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>DodajPrijateljaController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.DodajPrijateljaController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>PretragaRestoranaController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PretragaRestoranaController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>DefinisiRasporedController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.DefinisiRasporedController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>AktivanStoController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.AktivanStoController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>RezervisiStoController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.RezervisiStoController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>RezervisiSto2Controller</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.RezervisiSto2Controller</servlet-class>
+   </servlet>
+   
+   <servlet-mapping>
+      <servlet-name>RezervisiSto2Controller</servlet-name>
+      <url-pattern>/RezervisiSto2Controller</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>RezervisiStoController</servlet-name>
+      <url-pattern>/RezervisiStoController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>AktivanStoController</servlet-name>
+      <url-pattern>/AktivanStoController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>DefinisiRasporedController</servlet-name>
+      <url-pattern>/DefinisiRasporedController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>PretragaRestoranaController</servlet-name>
+      <url-pattern>/PretragaRestoranaController</url-pattern>
+   </servlet-mapping>
 	
    <servlet-mapping>
       <servlet-name>LogoutController</servlet-name>
@@ -109,6 +214,61 @@
    <servlet-mapping>
       <servlet-name>RestoranController</servlet-name>
       <url-pattern>/RestoranController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>JelovnikController</servlet-name>
+      <url-pattern>/JelovnikController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>PrikazRestoranaController</servlet-name>
+      <url-pattern>/PrikazRestoranaController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>MenadzerLoginController</servlet-name>
+      <url-pattern>/MenadzerLoginController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>RegisterMenadzeraController</servlet-name>
+      <url-pattern>/RegisterMenadzeraController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>ObrisiStavkuController</servlet-name>
+      <url-pattern>/ObrisiStavkuController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>IzmeniRestoranController</servlet-name>
+      <url-pattern>/IzmeniRestoranController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>IzmeniMenadzeraController</servlet-name>
+      <url-pattern>/IzmeniMenadzeraController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>IzmeniKorisnikaController</servlet-name>
+      <url-pattern>/IzmeniKorisnikaController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>PretraziPrijateljaController</servlet-name>
+      <url-pattern>/PretraziPrijateljaController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>ObrisiPrijateljaController</servlet-name>
+      <url-pattern>/ObrisiPrijateljaController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>DodajPrijateljaController</servlet-name>
+      <url-pattern>/DodajPrijateljaController</url-pattern>
    </servlet-mapping>
    
    <welcome-file-list>

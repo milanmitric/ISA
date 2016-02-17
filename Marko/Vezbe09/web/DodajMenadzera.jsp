@@ -12,15 +12,19 @@
 	<script src = "jquery-1.11.0.js"> 	
 	</script>
 	
-	<title>Registracija</title>
+	<title>Registracija menadzera</title>
 	
 	<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
 	<meta HTTP-EQUIV="Expires" CONTENT="-1">
 </head>
+	<c:if test="${(empty admin)}">
+				<c:redirect url="./login.jsp" />
+	</c:if>
+
 <body>
-			
+		<jsp:include page="header.jsp"/>	
 		
-		<div id="adduslugu_window">
+		<div id="addMenadzera_window">
 			
 			<div class="modal-dialog">
 			<div class="modal-content">
@@ -33,23 +37,23 @@
 			</c:if>
 		
 			
-			<form class="form-horizontal" id="register_form" role="form" action="./RegisterController" method="post"  accept-charset="UTF-8">
+			<form class="form-horizontal" id="register_form" role="form" action="./RegisterMenadzeraController" method="post"  accept-charset="UTF-8">
 			
 			<div class="modal-header">
-				<h4 align="center"> Dodavanje novog korisnika</h4>
+				<h4 align="center"> Dodavanje novog menadzera</h4>
 			</div>
 			
 			<div class="modal-body">
 			
 				<div class="form-group">
-					<label for="usluga-name" class="col-lg-2 control-label">Ime:</label>
+					<label class="col-lg-2 control-label">Ime:</label>
 					<div class="col-lg-10">
 						<input type="text" name="ime" class="form-control" placeholder="Ime" required/>
 					</div>
 				</div>
 				
 				<div class="form-group">
-					<label for="usluga-prezime" class="col-lg-2 control-label">Prezime:</label>
+					<label class="col-lg-2 control-label">Prezime:</label>
 					<div class="col-lg-10">
 						<input type="text" name="prezime" class="form-control" placeholder="Prezime" required/>
 					</div>
@@ -57,7 +61,7 @@
 				
 				<div class="form-group">
 					
-					<label for="usluga-korisnicko_ime" class="col-lg-2 control-label">Korisnicko ime:</label>
+					<label class="col-lg-2 control-label">Korisnicko ime:</label>
 					<div class="col-lg-10">
 						<input type="text"  id ="korisnicko_ime" name="korisnicko_ime" class="form-control" placeholder="Korisnicko ime" required/>
 					</div>
@@ -65,23 +69,35 @@
 				
 			
 				<div class="form-group">
-					<label for="usluga-lozinka" class="col-lg-2 control-label">Lozinka:</label>
+					<label class="col-lg-2 control-label">Lozinka:</label>
 					<div class="col-lg-10">
 						<input type="password"  name="lozinka" class="form-control" placeholder="Lozinka" required/>
 					</div>	
 				</div>
 				
 				<div class="form-group">
-					<label for="usluga-lozinka" class="col-lg-2 control-label">Ponovite lozinku:</label>
+					<label class="col-lg-2 control-label">Ponovite lozinku:</label>
 					<div class="col-lg-10">
 						<input type="password"  name="lozinka2" class="form-control" placeholder="Ponovite lozinku" required/>
 					</div>	
 				</div>
+				
+				<div class="input_restoran_group form-group">
+						<label class="col-lg-2 control-label">Menadzer restorana: </label>
+						<div class="col-sm-8">
+							<select name="restoran" class="form-control">
+								<c:forEach items="${restorani}" var="restoran">
+									<option value="${restoran.id}">"${restoran.nazivRestorana}" 
+									</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
 			</div>
 			
 			<div class="modal-footer">
-				<a href="./login.jsp" class="pull-left">Nazad na logovanje</a>
-				<input class="submit_adding_korisnika btn btn-primary pull-right" type="submit" name="submit" value="Potvrdi" />
+				<a href="./read.jsp" class="pull-left">Početna strana</a>
+				<input class="submit_adding_menadzera btn btn-primary pull-right" type="submit" name="submit" value="Potvrdi" />
 			</div>
 						
 				
