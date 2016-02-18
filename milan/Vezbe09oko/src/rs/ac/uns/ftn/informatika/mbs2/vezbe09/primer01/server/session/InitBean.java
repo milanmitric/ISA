@@ -14,6 +14,7 @@ import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Jelovnik;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Korisnik;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Menadzer;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Menjac;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Prijatelj;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Sto;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Vozilo;
@@ -41,6 +42,19 @@ public class InitBean implements Init {
 		korisnik.setKorisnickoImeKorisnika("pera");
 		korisnik.setLozinkaKorisnika("pera");
 		em.persist(korisnik);
+		
+		
+		Korisnik korisnik2 = new Korisnik();
+		korisnik2.setImeKorisnika("Mika");
+		korisnik2.setPrezimeKorisnika("Mikic");
+		korisnik2.setKorisnickoImeKorisnika("mika");
+		korisnik2.setLozinkaKorisnika("mika");
+		em.persist(korisnik2);
+		
+		Prijatelj prijatelj = new Prijatelj();
+		prijatelj.setKorisnik(korisnik);
+		prijatelj.setPrijatelj(korisnik2);
+		em.persist(prijatelj);
 		
 		Jelovnik jelovnik = new Jelovnik();
 		jelovnik.setNazivJelovnika("Jelovnik1");

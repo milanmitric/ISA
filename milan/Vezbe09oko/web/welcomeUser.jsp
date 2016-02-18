@@ -5,11 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>Pocetna menadzer sistema</title>
+<title>Pocetna strana</title>
 </head>
 <body>
-<jsp:include page="headerAdmin.jsp"/>
-<c:if test="${sessionScope.admin==null}">
+<jsp:include page="headerUser.jsp"/>
+<c:if test="${sessionScope.korisnik==null}">
 		<c:redirect url="./login.jsp" />
 </c:if>
 

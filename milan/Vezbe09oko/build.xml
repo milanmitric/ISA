@@ -134,6 +134,7 @@
 			DROP TABLE IF EXISTS jelovnik;
 			DROP TABLE IF EXISTS restoran;
 			DROP TABLE IF EXISTS sto;
+			DROP TABLE IF EXISTS prijatelj;
 			
 			
 		</sql>

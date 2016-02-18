@@ -38,10 +38,11 @@
 </head>
 <body>
 <ul>
-  <li><a href="./welcomeAdmin.jsp">Pocetna</a></li>
+  <li><a href="./welcomeUser.jsp">Pocetna</a></li>
   <li><a href="./readRestaurants.jsp">Restorani</a></li>
-  <li><a href="./PrepareManagersController">Menadzeri restorana</a></li>
+  <li><a href="./PrepareFriendController">Prijatelji</a></li>
   <ul style="float:right;list-style-type:none;">
+    <li><a  href="./userProfile.jsp">Profil</a></li>
     <li><a href="./LogoutController">Odjava</a></li>
   </ul>
 </ul>

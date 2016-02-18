@@ -51,7 +51,7 @@ try {
 				session.setAttribute("korisnik", korisnik);
 				
 				log.info("Korisnik " + korisnik.getKorisnickoImeKorisnika() + " se prijavio.");
-				getServletContext().getRequestDispatcher("/ReadController").forward(request, response);
+				getServletContext().getRequestDispatcher("/welcomeUser.jsp").forward(request, response);
 			}
 			
 		} catch (EJBException e) {

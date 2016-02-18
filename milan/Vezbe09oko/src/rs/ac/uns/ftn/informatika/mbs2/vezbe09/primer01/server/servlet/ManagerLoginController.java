@@ -55,7 +55,6 @@ public class ManagerLoginController extends HttpServlet{
 			
 		} catch (EJBException e) {
 			if (e.getCause().getClass().equals(NoResultException.class)) {
-				System.out.println("USAO U EXCEPTION");
 				getServletContext().getRequestDispatcher("/LoginController").forward(request, response);
 
 			} else {

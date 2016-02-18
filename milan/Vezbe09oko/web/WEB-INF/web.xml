@@ -169,6 +169,25 @@
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.UpdateManagerController</servlet-class>
    </servlet>
    
+   <servlet>
+      <servlet-name>PrepareFriendController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareFriendController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>AddFriendController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.AddFriendController</servlet-class>
+   </servlet>
+   
+    <servlet>
+      <servlet-name>FindFriendController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.FindFriendController</servlet-class>
+   </servlet>
+   
+       <servlet>
+      <servlet-name>UpdateUserController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.UpdateUserController</servlet-class>
+   </servlet>
    
    <servlet-mapping>
       <servlet-name>PrepareUpdateManagerController</servlet-name>
@@ -180,8 +199,25 @@
       <url-pattern>/UpdateManagerController</url-pattern>
    </servlet-mapping>
    
+    <servlet-mapping>
+      <servlet-name>PrepareFriendController</servlet-name>
+      <url-pattern>/PrepareFriendController</url-pattern>
+   </servlet-mapping>
    
+   <servlet-mapping>
+      <servlet-name>AddFriendController</servlet-name>
+      <url-pattern>/AddFriendController</url-pattern>
+   </servlet-mapping>
    
+   <servlet-mapping>
+      <servlet-name>FindFriendController</servlet-name>
+      <url-pattern>/FindFriendController</url-pattern>
+   </servlet-mapping>
+   
+      <servlet-mapping>
+      <servlet-name>UpdateUserController</servlet-name>
+      <url-pattern>/UpdateUserController</url-pattern>
+   </servlet-mapping>
    
    
    

@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Menadzer;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Prijatelj;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Sto;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Vozilo;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.MenadzerDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.PrijateljDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.StoDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.VoziloDaoLocal;
@@ -33,12 +35,17 @@ public class DeleteController extends HttpServlet {
 	
 	@EJB
 	private MenadzerDaoLocal menadzerDao;
+	
+	@EJB
+	private PrijateljDaoLocal prijateljDao;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
 			
-			if ((request.getSession().getAttribute("admin")) == null) {
+			if (((request.getSession().getAttribute("admin")) == null) &&
+				((request.getSession().getAttribute("korisnik")) == null) &&
+				((request.getSession().getAttribute("menadzer")) == null)) {
 				response.sendRedirect(response.encodeURL("./login.jsp"));
 				return;
 			}
@@ -49,6 +56,9 @@ public class DeleteController extends HttpServlet {
 			}
 			else if (getTableName(request).equals("menadzer")){
 				getServletContext().getRequestDispatcher("/PrepareManagersController").forward(request, response);
+			}
+			else if (getTableName(request).equals("prijatelj")){
+				getServletContext().getRequestDispatcher("/PrepareFriendController").forward(request, response);
 			}
 			
 			
@@ -85,6 +95,13 @@ public class DeleteController extends HttpServlet {
 		if (ret != null){
 			return ret;
 		}
+		
+		ret = request.getParameter("prijateljId");
+		if (ret != null){
+			Integer userId = Integer.parseInt(request.getParameter("korisnikId"));
+			Integer friendId = Integer.parseInt(request.getParameter("prijateljId"));
+			ret = prijateljDao.findFriendshipByFriends(userId, friendId).toString();
+		}
 		return ret;
 	}
 	/**
@@ -107,6 +124,10 @@ public class DeleteController extends HttpServlet {
 		if (ret != null){
 			return "menadzer";
 		}
+		ret = request.getParameter("prijateljId");
+		if (ret != null){
+			return "prijatelj";
+		}
 		return ret;
 	}
 	
@@ -125,6 +146,9 @@ public class DeleteController extends HttpServlet {
 		}else if (tableName.equals("menadzer")){
 			Menadzer menadzer = menadzerDao.findById(Integer.parseInt(id));
 			menadzerDao.remove(menadzer);
+		}else if (tableName.equals("prijatelj")){
+			Prijatelj prijatelj = prijateljDao.findById(Integer.parseInt(id));
+			prijateljDao.remove(prijatelj);
 		}
 		
 	}
