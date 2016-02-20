@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
 import java.io.IOException;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Menadzer;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.KorisnikDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.MenadzerDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 
@@ -23,6 +25,11 @@ public class UpdateManagerController extends HttpServlet {
 	@EJB
 	private MenadzerDaoLocal menadzerDao;
 
+	@EJB
+	private KorisnikDaoLocal korisnikDao;
+	
+	@EJB
+	private RestoranDaoLocal restoranDao;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
@@ -32,8 +39,8 @@ public class UpdateManagerController extends HttpServlet {
 			String prezime = null;
 			String korisnickoIme = null;
 			String lozinka = null;
-			
-			
+			boolean isSystemManager = false;
+			String restoran = null;
 			if (request.getParameter("ime")!= null){
 				ime = request.getParameter("ime");
 			}
@@ -45,6 +52,14 @@ public class UpdateManagerController extends HttpServlet {
 			}
 			if (request.getParameter("lozinka") != null){
 				lozinka = request.getParameter("lozinka");
+			}
+			if (request.getParameter("sistemMenadzer") != null){
+				String booleanValue = request.getParameter("sistemMenadzer");
+				if (booleanValue.equals("on")){
+					isSystemManager = true;
+				} else {
+					isSystemManager = false;
+				}
 			}
 			
 			Integer menadzerId = Integer.parseInt(request.getParameter("menadzerId"));
@@ -66,9 +81,31 @@ public class UpdateManagerController extends HttpServlet {
 				menadzer.setLozinka(lozinka);
 			}
 			
-		
+			if (request.getParameter("restoran") != null){
+				restoran = request.getParameter("restoran");
+			}
 			
-			menadzerDao.merge(menadzer);
+			menadzer.setSistemMenadzer(isSystemManager);
+			if (restoran != null && !restoran.equals("nema")){
+				Restoran r = restoranDao.findById(Integer.parseInt(restoran));
+				menadzer.setRestoran(r);
+			} else if (restoran == null || restoran.equals("nema")){
+				menadzer.setRestoran(null);
+			}
+			
+			if (korisnikDao.checkIfExists(korisnickoIme)){
+				request.setAttribute("errorMessage", "Vec postoji korisnik sa tim korisnickim imenom");
+				getServletContext().getRequestDispatcher("/PrepareManagersController").forward(request, response);
+				return;
+			}
+			
+			try{
+				menadzerDao.merge(menadzer);
+			} catch(EJBException ejb){
+				request.setAttribute("errorMessage", "Vec postoji korisnik sa tim korisnickim imenom");
+				getServletContext().getRequestDispatcher("/PrepareManagersController").forward(request, response);
+				return;
+			}
 			
 			getServletContext().getRequestDispatcher("/PrepareManagersController").forward(request, response);
 		

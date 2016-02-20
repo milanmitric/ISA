@@ -28,7 +28,12 @@ public class PrepareManagersController extends HttpServlet{
 			response.sendRedirect(response.encodeURL("./login.jsp"));
 			return;
 		}
-		System.out.println("USAO U CITANJE");
+		
+		String errorMessage = request.getParameter("errorMessage");
+		if (errorMessage != null){
+			request.setAttribute("errorMessage", errorMessage);
+		}
+		
 		request.setAttribute("menadzeri", menadzerDao.findAll());
 		getServletContext().getRequestDispatcher("/managers.jsp").forward(request, response);
 		

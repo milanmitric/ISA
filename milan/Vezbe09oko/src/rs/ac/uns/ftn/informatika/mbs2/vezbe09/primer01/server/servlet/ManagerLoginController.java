@@ -45,12 +45,14 @@ public class ManagerLoginController extends HttpServlet{
 				if(korisnik.isSistemMenadzer())
 				{
 					session.setAttribute("admin", korisnik);
+					getServletContext().getRequestDispatcher("/ReadController").forward(request, response);
 				}
 				else
 				{
 					session.setAttribute("menadzer", korisnik);
+					response.sendRedirect(response.encodeRedirectURL("./welcomeManager.jsp"));
 				}
-				getServletContext().getRequestDispatcher("/ReadController").forward(request, response);
+				
 			}
 			
 		} catch (EJBException e) {

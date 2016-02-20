@@ -21,19 +21,29 @@
         			<th>Prezime</th>
         			<th>Korisnicko ime</th>
         			<th>Lozinka</th>
+        			<th>Sistem menadzer</th>
+        			<th>Restoran</th>
         			<th>Izmjena menadzera</th>
 					<th>Obrisi menadzera</th>
       			</tr>
     		</thead>
     		<tbody>
 				<c:forEach items="${menadzeri}" var="menadzer">
-					<c:if test="${menadzer.sistemMenadzer == false}">
+					<c:if test="${menadzer.id != sessionScope.admin.id}">
 						<tr>
 							<td>${menadzer.ime}</td>
 							<td>${menadzer.prezime}</td>
 							<td>${menadzer.korisnickoIme}</td>
 							<td>${menadzer.lozinka}</td>
-							
+							<c:if test="${menadzer.sistemMenadzer == true }">
+								<td>Da</td>
+							</c:if>
+							<c:if test="${menadzer.sistemMenadzer == false}">
+								<td>Ne</td>
+							</c:if>
+							<td>
+								${menadzer.restoran.nazivRestorana} u ${menadzer.restoran.adresaRestorana}
+							</td>
 							<td>
 								<form method="POST" action="PrepareUpdateManagerController" accept-charset="UTF-8">
 									<input type="hidden" name="menadzerId" value="${menadzer.id}">
@@ -73,6 +83,18 @@
 	        	<input class="form-control" name="prezime" type="text"  placeholder="Prezime"/><br>
 	        	<input class="form-control" name="korisnickoIme" type="text"  placeholder="Korisnicko ime" required/><br>
 	        	<input class="form-control" name="lozinka" type="password"  placeholder="Lozinka" required/><br>
+	        	Da li je sistem menadzer<br>
+	        	<input class="form-control" name="sistemMenadzer" type="checkbox"  /><br>
+	        	Restoran <br>
+	        	<select name = "restoran" class="form-control">
+		        		<option value ="-1">nema
+		        		</option>
+	        		<c:forEach items="${restorani}" var="restoran">
+	        			<option value="${restoran.id}">
+	        			${restoran.nazivRestorana} u ${restoran.adresaRestorana}
+	        			</option>
+	        		</c:forEach>
+	        	</select>
 	        	<input class="form-control" type="submit" class = "btn bnt-default">
 	        </form>
 	      </div>
@@ -83,6 +105,8 @@
 	
 	  </div>
 	</div>
-
+	<c:if test="${errorMessage != null}">
+		<h1>${errorMessage}</h1>
+	</c:if>
 </body>
 </html>

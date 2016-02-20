@@ -2,7 +2,9 @@ package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Korisnik;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Menjac;
 
 @Stateless

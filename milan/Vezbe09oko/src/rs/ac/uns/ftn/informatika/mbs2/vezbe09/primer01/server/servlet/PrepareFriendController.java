@@ -43,9 +43,7 @@ public class PrepareFriendController extends HttpServlet{
 		try{
 			Korisnik korisnik = (Korisnik)(request.getSession().getAttribute("korisnik"));
 			
-			System.out.println(korisnik.getImeKorisnika());
 			List<Prijatelj> prijatelji = prijateljDao.findFriend(korisnik.getId());
-			System.out.println(prijatelji.size());
 			List<Korisnik> korisnici = korisnikDao.findAll();
 			
 			
@@ -58,7 +56,6 @@ public class PrepareFriendController extends HttpServlet{
 					}
 				}
 			}
-			System.out.println(outList.size());
 			
 			String errorMessage = request.getParameter("errorMessage");
 			if (errorMessage != null){

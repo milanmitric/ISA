@@ -20,6 +20,11 @@
 		<input type="hidden" name="korisnikId" value= "${sessionScope.korisnik.id}">
 		<input type="submit" class="form-control" value="Izmjeni">
 	</form>
+	
+	<c:if test="${errorMessage != null}">
+		<h1>${errorMessage}</h1>
+	</c:if>
+	
 <script type="text/javascript">
 
 function enableInputs(){

@@ -40,6 +40,10 @@ public class PrepareUpdateManagerController extends HttpServlet {
 			String id = request.getParameter("menadzerId");
 
 			if ((id != null) && (!id.equals(""))) {
+				String errorMessage = request.getParameter("errorMessage");
+				if (errorMessage != null){
+					request.setAttribute("errorMessage", errorMessage);
+				}
 				request.getSession(true).setAttribute("menadzer", menadzerDao.findById(Integer.parseInt(id)));
 				getServletContext().getRequestDispatcher("/updateManager.jsp").forward(request, response);
 			}

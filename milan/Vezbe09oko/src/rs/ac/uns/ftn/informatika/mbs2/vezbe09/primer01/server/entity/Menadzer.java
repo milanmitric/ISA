@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Transient;
 
@@ -42,6 +44,10 @@ public class Menadzer implements Serializable{
 	@Column(nullable = false, unique = false)
 	private boolean sistemMenadzer;
 	
+	
+	@ManyToOne
+	@JoinColumn(name = "restoran_fk", nullable = true)
+	private Restoran restoran;
 	
 	public Menadzer(){
 	}
@@ -105,4 +111,16 @@ public class Menadzer implements Serializable{
 	public void setSistemMenadzer(boolean sistemMenadzer) {
 		this.sistemMenadzer = sistemMenadzer;
 	}
+
+
+	public Restoran getRestoran() {
+		return restoran;
+	}
+
+
+	public void setRestoran(Restoran restoran) {
+		this.restoran = restoran;
+	}
+	
+	
 }

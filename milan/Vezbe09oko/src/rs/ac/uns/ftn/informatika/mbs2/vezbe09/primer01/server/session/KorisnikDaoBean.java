@@ -21,11 +21,19 @@ public class KorisnikDaoBean extends GenericDaoBean<Korisnik, Integer>
 		return result;
 	}
 	
-	/*public Korisnik napraviKorisnika(String ime,String prezime, String korisnickoIme, String lozinka)
-	{
-		Korisnik korisnik = new Korisnik(ime, prezime, korisnickoIme, lozinka);
-		em.persist(korisnik);
-		return korisnik;
-	}*/
+	public boolean checkIfExists(String korisnickoIme){
+		Query q = em.createQuery("SELECT k from Korisnik k WHERE k.korisnickoImeKorisnika like :korisnickoIme");
+		q.setParameter("korisnickoIme", korisnickoIme);
+		
+		try{
+			Korisnik k = (Korisnik)q.getSingleResult();
+			if (k != null) {
+				return true;
+			}
+		} catch (Exception e){
+			return false;
+		}
+		return false;
+	}
 
 }

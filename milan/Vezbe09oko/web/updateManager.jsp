@@ -28,10 +28,38 @@
 						<td>Prezime <input  class="form-control" name="prezime" type="text" value = "${sessionScope.menadzer.prezime}"></td>
 					</tr>
 					<tr>
-						<td>Korisnicko ime <input  class="form-control" type="text" name="korisnickoIme" value = "${sessionScope.menadzer.korisnickoIme}"></td>
+						<td>Korisnicko ime <input  class="form-control" type="text" name="korisnickoIme" value = "${sessionScope.menadzer.korisnickoIme}" required></td>
 					</tr>
 					<tr>
-						<td>Lozinka <input  class="form-control" type="text" name="lozinka" value = "${sessionScope.menadzer.lozinka}"></td>
+						<td>Lozinka <input  class="form-control" type="text" name="lozinka" value = "${sessionScope.menadzer.lozinka}" required></td>
+					</tr>
+					<tr>
+						<c:if test="${sessionScope.menadzer.sistemMenadzer == true}">
+							<td>Da li je sistem menadzer?<input class="form-control" name="sistemMenadzer" type="checkbox" checked/><br>
+						</c:if>
+						<c:if test="${sessionScope.menadzer.sistemMenadzer == false}">
+							<td>Da li je sistem menadzer?<input class="form-control" name="sistemMenadzer" type="checkbox" /><br>
+						</c:if>
+					</tr>
+					<tr>
+						<td>
+							<select name="restoran" class="form-control">
+								<option >nema
+		        				</option>
+								<c:forEach items="${restorani}" var="restoran">
+									<c:if test="${sessionScope.menadzer.restoran.id == restoran.id}">
+										<option value="${restoran.id}" selected="selected"> 
+				        				${restoran.nazivRestorana} u ${restoran.adresaRestorana}
+				        			</option>
+									</c:if>
+				        			<c:if test="${sessionScope.menadzer.restoran.id != restoran.id}">
+										<option value="${restoran.id}"> 
+				        				${restoran.nazivRestorana} u ${restoran.adresaRestorana}
+				        			</option>
+									</c:if>
+	        					</c:forEach>
+							</select>
+						</td>
 					</tr>
 					<tr>
 						<td><input type="hidden" name="menadzerId" value = "${sessionScope.menadzer.id}"></td>
@@ -40,5 +68,8 @@
 				</table>
 			</div>
 		</form>
+	<c:if test="${errorMessage != null}">
+		<h1>${errorMessage}</h1>
+	</c:if>
 	</body>	
 </html>

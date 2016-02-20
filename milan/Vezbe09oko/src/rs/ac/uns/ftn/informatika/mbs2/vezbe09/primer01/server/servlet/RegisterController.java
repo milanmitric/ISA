@@ -35,15 +35,7 @@ public class RegisterController extends HttpServlet{
 		String prezime = request.getParameter("prezime");
 		
 		try {
-			
-			
-			
-			System.out.println("AAAA");
-			
 			Korisnik korisnik = korisnikDao.findKorisnikSaKorisnickimImenomILozinkom(korisnickoIme, lozinka);
-			
-			System.out.println(korisnik);
-			
 			if (korisnik != null) {	
 
 				String errorMessage = "Postoji korisnik sa tim korisnickim imenom.";
@@ -61,7 +53,7 @@ public class RegisterController extends HttpServlet{
 				
 				
 				HttpSession session = request.getSession(true);
-				session.setAttribute("admin", noviKorisnik);
+				session.setAttribute("korisnik", noviKorisnik);
 				log.info("Korisnik " + noviKorisnik.getKorisnickoImeKorisnika() + " se prijavio.");
 				getServletContext().getRequestDispatcher("/ReadController").forward(request, response);
 				

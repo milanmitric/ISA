@@ -31,7 +31,7 @@ public class UpdateController extends HttpServlet {
 			String mailRestorana = null;
 			String telefonRestorana = null;
 			Integer udaljenostRestorana = null;
-			Integer kapacitet = null;
+			String vrsta= null;
 			
 			
 			if (request.getParameter("nazivRestorana")!= null){
@@ -50,8 +50,8 @@ public class UpdateController extends HttpServlet {
 				udaljenostRestorana = Integer.parseInt(request.getParameter("udaljenostRestorana")); 
 			}
 			
-			if (request.getParameter("kapacitet")!= null){
-				kapacitet = Integer.parseInt(request.getParameter("kapacitet"));
+			if (request.getParameter("vrsta")!= null){
+				vrsta = request.getParameter("vrsta");
 			}
 			
 			Restoran restoran = new Restoran();
@@ -75,8 +75,8 @@ public class UpdateController extends HttpServlet {
 				restoran.setUdaljenostRestorana(udaljenostRestorana);
 			}
 			
-			if (kapacitet != null && !kapacitet.equals("")){
-				restoran.setKapacitet(kapacitet);
+			if (vrsta != null && !vrsta.equals("")){
+				restoran.setVrstaRestorana(vrsta);
 			}
 			
 			
@@ -85,7 +85,7 @@ public class UpdateController extends HttpServlet {
 			
 			restoranDao.merge(restoran);
 			
-			getServletContext().getRequestDispatcher("/ReadController").forward(request, response);
+			getServletContext().getRequestDispatcher("/readRestaurants.jsp").forward(request, response);
 		
 		} catch (ServletException e) {
 			log.error(e);

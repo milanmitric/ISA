@@ -39,7 +39,7 @@
 						<td>Udaljenost <input  class="form-control" type="text" name="udaljenostRestorana" value = "${sessionScope.restoran.udaljenostRestorana}"></td>
 					</tr>
 					<tr>
-						<td>Kapacitet <input  class="form-control" type="text" name = "kapacitet" value = "${sessionScope.restoran.kapacitet}"> </td>
+						<td>Vrsta restorana<input  class="form-control" type="text" name = "vrsta" value = "${sessionScope.restoran.vrstaRestorana}"> </td>
 					</tr>
 					<tr>
 						<td><input type="hidden" name="restoranId" value = "${sessionScope.restoran.id}"></td>
@@ -48,5 +48,8 @@
 				</table>
 			</div>
 		</form>
+	
+	
+	
 	</body>	
 </html>

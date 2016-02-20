@@ -31,7 +31,7 @@
         			<th>Email</th>
         			<th>Telefon</th>
         			<th>Udaljenost</th>
-        			<th>Kapacitet</th>
+        			<th>Vrsta</th>
         			<th>Promjena restorana</th>
 					<th>Obrisi restoran</th>
 					<th>Prikazi stolove</th>
@@ -45,7 +45,7 @@
 						<td>${restoran.mailRestorana}</td>
 						<td>${restoran.telefonRestorana}</td>
 						<td>${restoran.udaljenostRestorana}</td>
-						<td>${restoran.kapacitet}</td>
+						<td>${restoran.vrstaRestorana}</td>
 						<td>
 							<form action="./PrepareUpdateController" method="POST" accept-charset="UTF-8">
 								<input type="hidden" name="restoranId" value="${restoran.id}">

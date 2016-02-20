@@ -184,9 +184,19 @@
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.FindFriendController</servlet-class>
    </servlet>
    
-       <servlet>
+   <servlet>
       <servlet-name>UpdateUserController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.UpdateUserController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>ManagerPrepareRestaurantController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ManagerPrepareRestaurantController</servlet-class>
+   </servlet>
+   
+      <servlet>
+      <servlet-name>ManagerUpdateRestaurantController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ManagerUpdateRestaurantController</servlet-class>
    </servlet>
    
    <servlet-mapping>
@@ -214,11 +224,20 @@
       <url-pattern>/FindFriendController</url-pattern>
    </servlet-mapping>
    
-      <servlet-mapping>
+   <servlet-mapping>
       <servlet-name>UpdateUserController</servlet-name>
       <url-pattern>/UpdateUserController</url-pattern>
    </servlet-mapping>
    
+   <servlet-mapping>
+      <servlet-name>ManagerPrepareRestaurantController</servlet-name>
+      <url-pattern>/ManagerPrepareRestaurantController</url-pattern>
+   </servlet-mapping>
+   
+	<servlet-mapping>
+      <servlet-name>ManagerUpdateRestaurantController</servlet-name>
+      <url-pattern>/ManagerUpdateRestaurantController</url-pattern>
+   </servlet-mapping>
    
    
    

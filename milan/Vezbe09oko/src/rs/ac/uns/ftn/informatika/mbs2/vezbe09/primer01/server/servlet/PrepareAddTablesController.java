@@ -32,7 +32,7 @@ public class PrepareAddTablesController extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			
-			if ((request.getSession().getAttribute("admin")) == null) {
+			if ((request.getSession().getAttribute("menadzer")) == null) {
 				response.sendRedirect(response.encodeURL("./login.jsp"));
 				return;
 			}

@@ -38,9 +38,8 @@
 </head>
 <body>
 <ul>
-  <li><a href="./welcomeAdmin.jsp">Pocetna</a></li>
-  <li><a href="./readRestaurants.jsp">Restorani</a></li>
-  <li><a href="./PrepareManagersController">Menadzeri</a></li>
+  <li><a href="./welcomeManager.jsp">Pocetna</a></li>
+  <li><a href="./ManagerPrepareRestaurantController">Restoran</a></li>
   <ul style="float:right;list-style-type:none;">
     <li><a href="./LogoutController">Odjava</a></li>
   </ul>

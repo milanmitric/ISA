@@ -66,7 +66,6 @@ public class AddFriendController extends HttpServlet{
 	private boolean checkIfExists(Integer korisnikId, Integer prijateljId){
 		try{
 			Integer id = prijateljDao.findFriendshipByFriends(korisnikId, prijateljId);
-			System.out.println(id);
 			if (id != null){
 				log.info("Already friend user: " + korisnikId + " friend " + prijateljId);
 				return true;

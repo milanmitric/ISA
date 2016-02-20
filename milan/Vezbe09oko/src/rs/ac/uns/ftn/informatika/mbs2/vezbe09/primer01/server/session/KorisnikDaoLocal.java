@@ -7,5 +7,6 @@ public interface KorisnikDaoLocal extends GenericDaoLocal<Korisnik, Integer> {
 	public Korisnik findKorisnikSaKorisnickimImenomILozinkom(
 			String korisnickoIme, String lozinka);
 
-	//public Korisnik napraviKorisnika(String ime,String prezime, String korisnickoIme, String lozinka);
+	
+	public boolean checkIfExists(String korisnickoIme);
 }

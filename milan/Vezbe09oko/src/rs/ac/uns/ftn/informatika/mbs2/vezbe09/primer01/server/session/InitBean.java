@@ -67,7 +67,6 @@ public class InitBean implements Init {
 		restoran.setTelefonRestorana("021453143");
 		restoran.setUdaljenostRestorana(12);
 		restoran.setJelovnik(jelovnik);
-		restoran.setKapacitet(10);
 		
 		HashSet<Sto> stolovi = new HashSet<Sto>();
 		

@@ -14,8 +14,7 @@ public class RestoranDaoBean extends GenericDaoBean<Restoran, Integer>
 	public void remove(Restoran r) {
 		r = em.merge(r);
 		//r.getJelovnik().getRestorani().remove(r);
-		em.remove(r);
-		System.out.println("izbrisano");
+		em.remove(r);		
 	}
 
 }

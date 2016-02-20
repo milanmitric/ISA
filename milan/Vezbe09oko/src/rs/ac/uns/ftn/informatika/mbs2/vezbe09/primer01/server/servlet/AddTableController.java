@@ -40,19 +40,15 @@ public class AddTableController extends HttpServlet{
 		
 		if ((request.getParameter("restoranId") != null) && (!"".equals(request.getParameter("restoranId")))) {
 			restoran = request.getParameter("restoranId");
-			System.out.println(restoran);
 		}
 		
 		if ((request.getParameter("kolona") != null) 	&& (!"".equals(request.getParameter("kolona")))) {
 			kolona = new Integer(request.getParameter("kolona"));
-			System.out.println(kolona);
 		}
 		
 		if ((request.getParameter("red") != null) 	&& (!"".equals(request.getParameter("red")))) {
 			red = new Integer(request.getParameter("red"));
-			System.out.println(red);
 		}
-		System.out.println("USAO");
 		// DA nadjem sve stolove koje pripadaju restorani sa ID restoran 
 		List<Sto> tmp = stoDao.stoloviSaIdRestorana(Integer.parseInt(restoran));
 		Sto toDelete =null;
@@ -78,7 +74,6 @@ public class AddTableController extends HttpServlet{
 		
 
 		request.setAttribute("kreiraniStolovi",stoDao.stoloviSaIdRestorana(Integer.parseInt(restoran)));
-		System.out.println((stoDao.stoloviSaIdRestorana(Integer.parseInt(restoran))).size());
 		request.getSession(true).setAttribute("restoran", restoranDao.findById(Integer.parseInt(restoran)));
 		getServletContext().getRequestDispatcher("/createTables.jsp").forward(request, response);
 	}

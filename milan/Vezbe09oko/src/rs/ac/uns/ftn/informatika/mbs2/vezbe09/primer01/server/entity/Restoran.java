@@ -37,15 +37,14 @@ public class Restoran implements Serializable{
 	
 	@Column( unique = false, nullable = false)
 	private String mailRestorana;
+	@Column(unique = false, nullable = true)
+	private String vrstaRestorana;
 	
 	@Column(unique = false, nullable = false)
 	private String telefonRestorana;
 	
 	@Column(unique = false, nullable = false)
 	private Integer udaljenostRestorana;
-	
-	@Column(unique = false, nullable = false)
-	private Integer kapacitet;
 	
 	@ManyToOne
 	@JoinColumn(name = "jelovnik_fk", nullable = false)
@@ -118,13 +117,14 @@ public class Restoran implements Serializable{
 		this.stolovi = stolovi;
 	}
 
-	public Integer getKapacitet() {
-		return kapacitet;
+	public String getVrstaRestorana() {
+		return vrstaRestorana;
 	}
 
-	public void setKapacitet(Integer kapacitet) {
-		this.kapacitet = kapacitet;
+	public void setVrstaRestorana(String vrstaRestorana) {
+		this.vrstaRestorana = vrstaRestorana;
 	}
+
 	
 	
 	
