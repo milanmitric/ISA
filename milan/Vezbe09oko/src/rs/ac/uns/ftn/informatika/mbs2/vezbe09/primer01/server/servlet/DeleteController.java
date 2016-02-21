@@ -10,11 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Jelo;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Menadzer;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Prijatelj;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Sto;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Vozilo;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.JeloDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.MenadzerDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.PrijateljDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
@@ -38,6 +40,9 @@ public class DeleteController extends HttpServlet {
 	
 	@EJB
 	private PrijateljDaoLocal prijateljDao;
+	
+	@EJB
+	private JeloDaoLocal jeloDao;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -59,6 +64,8 @@ public class DeleteController extends HttpServlet {
 			}
 			else if (getTableName(request).equals("prijatelj")){
 				getServletContext().getRequestDispatcher("/PrepareFriendController").forward(request, response);
+			} else if (getTableName(request).equals("jelo")){
+				getServletContext().getRequestDispatcher("/ManagerPrepareRestaurantController").forward(request, response);
 			}
 			
 			
@@ -102,6 +109,10 @@ public class DeleteController extends HttpServlet {
 			Integer friendId = Integer.parseInt(request.getParameter("prijateljId"));
 			ret = prijateljDao.findFriendshipByFriends(userId, friendId).toString();
 		}
+		ret = request.getParameter("jelo");
+		if (ret != null){
+			return ret;
+		}
 		return ret;
 	}
 	/**
@@ -128,6 +139,10 @@ public class DeleteController extends HttpServlet {
 		if (ret != null){
 			return "prijatelj";
 		}
+		ret = request.getParameter("jelo");
+		if (ret != null){
+			return "jelo";
+		}
 		return ret;
 	}
 	
@@ -149,6 +164,9 @@ public class DeleteController extends HttpServlet {
 		}else if (tableName.equals("prijatelj")){
 			Prijatelj prijatelj = prijateljDao.findById(Integer.parseInt(id));
 			prijateljDao.remove(prijatelj);
+		} else if (tableName.equals("jelo")){
+			Jelo jelo = jeloDao.findById(Integer.parseInt(id));
+			jeloDao.remove(jelo);
 		}
 		
 	}

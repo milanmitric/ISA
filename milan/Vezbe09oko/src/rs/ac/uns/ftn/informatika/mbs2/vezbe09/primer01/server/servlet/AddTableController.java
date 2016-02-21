@@ -29,7 +29,7 @@ public class AddTableController extends HttpServlet{
 	@EJB
 	private RestoranDaoLocal restoranDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if ((request.getSession().getAttribute("admin")) == null) {
+		if ((request.getSession().getAttribute("menadzer")) == null) {
 			response.sendRedirect(response.encodeURL("./login.jsp"));
 			return;
 		}
@@ -59,6 +59,7 @@ public class AddTableController extends HttpServlet{
 		}
 		
 		if (toDelete != null){
+			System.out.println("IZBRISAO");
 			stoDao.remove(toDelete);
 		}else{
 			Sto sto = new Sto();
@@ -68,14 +69,12 @@ public class AddTableController extends HttpServlet{
 			Restoran r = restoranDao.findById(Integer.parseInt(restoran));
 			sto.setRestoran(r);
 			
-
+			System.out.println("DODAO");
 			stoDao.persist(sto);
 		}
 		
 
-		request.setAttribute("kreiraniStolovi",stoDao.stoloviSaIdRestorana(Integer.parseInt(restoran)));
-		request.getSession(true).setAttribute("restoran", restoranDao.findById(Integer.parseInt(restoran)));
-		getServletContext().getRequestDispatcher("/createTables.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/PrepareAddTablesController").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

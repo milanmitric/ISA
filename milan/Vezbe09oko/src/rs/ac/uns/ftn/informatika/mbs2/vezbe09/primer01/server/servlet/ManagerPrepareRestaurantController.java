@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Menadzer;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.JeloDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.MenadzerDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 
@@ -26,6 +27,9 @@ public class ManagerPrepareRestaurantController extends HttpServlet{
 	
 	@EJB
 	private RestoranDaoLocal restoranDao;
+	
+	@EJB
+	private JeloDaoLocal jeloDao;
 	
 	private static Logger log = Logger.getLogger(ManagerPrepareRestaurantController.class);
 
@@ -47,6 +51,7 @@ public class ManagerPrepareRestaurantController extends HttpServlet{
 			
 			if (m.getRestoran() != null){
 				request.setAttribute("restoran", restoranDao.findById(m.getRestoran().getId()));
+				request.setAttribute("jela", jeloDao.findByRestoran(m.getRestoran().getId()));
 				getServletContext().getRequestDispatcher("/managerRestaurant.jsp").forward(request, response);
 			}
 			

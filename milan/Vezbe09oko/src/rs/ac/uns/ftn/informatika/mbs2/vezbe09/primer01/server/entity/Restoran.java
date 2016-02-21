@@ -45,10 +45,10 @@ public class Restoran implements Serializable{
 	
 	@Column(unique = false, nullable = false)
 	private Integer udaljenostRestorana;
-	
-	@ManyToOne
-	@JoinColumn(name = "jelovnik_fk", nullable = false)
-	private Jelovnik jelovnik;
+	@Column(nullable = true)
+	private Integer brojRedovaRestorana;
+	@Column(nullable = true)
+	private Integer brojKolonaRestorana;
 
 	@OneToMany(cascade = { ALL }, fetch = LAZY, mappedBy = "restoran")
 	private Set<Sto> stolovi = new  HashSet<>();
@@ -101,13 +101,6 @@ public class Restoran implements Serializable{
 		this.udaljenostRestorana = udaljenostRestorana;
 	}
 
-	public Jelovnik getJelovnik() {
-		return jelovnik;
-	}
-
-	public void setJelovnik(Jelovnik jelovnik) {
-		this.jelovnik = jelovnik;
-	}
 
 	public Set<Sto> getStolovi() {
 		return stolovi;
@@ -123,6 +116,22 @@ public class Restoran implements Serializable{
 
 	public void setVrstaRestorana(String vrstaRestorana) {
 		this.vrstaRestorana = vrstaRestorana;
+	}
+
+	public Integer getBrojRedovaRestorana() {
+		return brojRedovaRestorana;
+	}
+
+	public void setBrojRedovaRestorana(Integer brojRedovaRestorana) {
+		this.brojRedovaRestorana = brojRedovaRestorana;
+	}
+
+	public Integer getBrojKolonaRestorana() {
+		return brojKolonaRestorana;
+	}
+
+	public void setBrojKolonaRestorana(Integer brojKolonaRestorana) {
+		this.brojKolonaRestorana = brojKolonaRestorana;
 	}
 
 	

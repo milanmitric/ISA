@@ -194,9 +194,14 @@
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ManagerPrepareRestaurantController</servlet-class>
    </servlet>
    
-      <servlet>
+   <servlet>
       <servlet-name>ManagerUpdateRestaurantController</servlet-name>
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ManagerUpdateRestaurantController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>CreateMealController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.CreateMealController</servlet-class>
    </servlet>
    
    <servlet-mapping>
@@ -239,7 +244,10 @@
       <url-pattern>/ManagerUpdateRestaurantController</url-pattern>
    </servlet-mapping>
    
-   
+   <servlet-mapping>
+      <servlet-name>CreateMealController</servlet-name>
+      <url-pattern>/CreateMealController</url-pattern>
+   </servlet-mapping>
    
    
    

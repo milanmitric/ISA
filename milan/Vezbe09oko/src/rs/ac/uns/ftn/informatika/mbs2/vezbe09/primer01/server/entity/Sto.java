@@ -25,9 +25,6 @@ public class Sto implements Serializable{
 	@Column(unique = true, nullable = false)
 	private Integer id;
 	
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(unique = true, nullable = false)
-	private Integer redniBroj;
 	
 	@Column(unique = false, nullable = false)
 	private Integer red;
@@ -40,19 +37,12 @@ public class Sto implements Serializable{
 	private Restoran restoran;
 	
 	@Transient
-	private boolean status;
+	private boolean slobodan;
 		
 	public Sto(){
 		super();
 	}
 
-	public Integer getRedniBroj() {
-		return redniBroj;
-	}
-
-	public void setRedniBroj(Integer redniBroj) {
-		this.redniBroj = redniBroj;
-	}
 
 	public Integer getRed() {
 		return red;
@@ -85,6 +75,19 @@ public class Sto implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+
+	public boolean isSlobodan() {
+		return slobodan;
+	}
+
+
+	public void setSlobodan(boolean slobodan) {
+		this.slobodan = slobodan;
+	}
+
+
+
 	
 	
 

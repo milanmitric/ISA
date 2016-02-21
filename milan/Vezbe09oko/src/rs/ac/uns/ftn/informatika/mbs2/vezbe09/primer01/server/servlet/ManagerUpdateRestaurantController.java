@@ -60,7 +60,7 @@ public class ManagerUpdateRestaurantController  extends HttpServlet{
 				
 				restoranDao.merge(restoran);
 				request.setAttribute("restoran", restoran);
-				getServletContext().getRequestDispatcher("/managerRestaurant.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/ManagerPrepareRestaurantController").forward(request, response);
 			}
 		
 			

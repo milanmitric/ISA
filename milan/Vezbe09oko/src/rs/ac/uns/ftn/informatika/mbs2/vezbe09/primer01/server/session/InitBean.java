@@ -36,6 +36,8 @@ public class InitBean implements Init {
 		menadzer.setSistemMenadzer(true);
 		em.persist(menadzer);
 		
+		
+		
 		Korisnik korisnik = new Korisnik();
 		korisnik.setImeKorisnika("Pera");
 		korisnik.setPrezimeKorisnika("Peric");
@@ -56,9 +58,6 @@ public class InitBean implements Init {
 		prijatelj.setPrijatelj(korisnik2);
 		em.persist(prijatelj);
 		
-		Jelovnik jelovnik = new Jelovnik();
-		jelovnik.setNazivJelovnika("Jelovnik1");
-		em.persist(jelovnik);
 		
 		Restoran restoran = new Restoran();
 		restoran.setAdresaRestorana("Sremska 10");
@@ -66,8 +65,8 @@ public class InitBean implements Init {
 		restoran.setMailRestorana("dvastapica@office.com");
 		restoran.setTelefonRestorana("021453143");
 		restoran.setUdaljenostRestorana(12);
-		restoran.setJelovnik(jelovnik);
-		
+
+		/*
 		HashSet<Sto> stolovi = new HashSet<Sto>();
 		
 		for(int i = 0; i < 10; i++){
@@ -78,11 +77,15 @@ public class InitBean implements Init {
 			stolovi.add(tmp);
 		}
 		
-		restoran.setStolovi(stolovi);
+		restoran.setStolovi(stolovi);*/
 		
 		em.persist(restoran);
 		
 		
-		
+		Menadzer m = new Menadzer();
+		m.setKorisnickoIme("zika");
+		m.setLozinka("zika");
+		m.setRestoran(restoran);
+		em.persist(m);
 	}
 }

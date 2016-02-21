@@ -15,37 +15,21 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "jelovnik")
+
+
 public class Jelovnik implements Serializable{
 
 	private static final long serialVersionUID = -2441237196648230347L;
 
 	
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "jelovnik_id", unique = true, nullable = false)
+	
+	
 	private Integer id;
 
-	@Column(name = "jelovnik_naziv", unique = false, nullable = false)
+	
 	private String nazivJelovnika;
 
-	@OneToMany(cascade = { ALL }, fetch = LAZY, mappedBy = "jelovnik")
-	private Set<Restoran> restorani = new HashSet<Restoran>();
-
-	public void add(Restoran r) {
-		
-		if (r.getJelovnik() != null)
-			r.getJelovnik().getRestorani().remove(r);
-		r.setJelovnik(this);
-		restorani.add(r);
-		
-	}
-
-	public void remove(Restoran r) {
-		r.setJelovnik(null);
-		restorani.remove(r);
-	}
+	
 	
 	public Integer getId() {
 		return id;
@@ -63,23 +47,12 @@ public class Jelovnik implements Serializable{
 		this.nazivJelovnika = nazivJelovnika;
 	}
 
-	public Set<Restoran> getRestorani() {
-		return restorani;
-	}
-
-	public void setRestorani(Set<Restoran> restorani) {
-		this.restorani = restorani;
-	}
 
 	public Jelovnik() {
 		super();
 	}
 
-	public Jelovnik(String nazivJelovnika, Set<Restoran> restorani) {
-		super();
-		this.nazivJelovnika = nazivJelovnika;
-		this.restorani = restorani;
-	}
+	
 
 	
 

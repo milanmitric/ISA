@@ -14,50 +14,19 @@
 
 </head>
 <body>
-	<script type="text/javascript">
+	<jsp:include page="headerManager.jsp"/>
+	<c:if test="${sessionScope.menadzer==null}">
+			<c:redirect url="./login.jsp" />
+	</c:if>
 	
-	function doFunction(element,i,j){
-		if (element.value == "Slobodan"){
-			element.value = "Nema stola";
-		} else {
-			element.value = "Slobodan";
-		}
-	};
+	<form method = "POST" action = "PrepareAddTablesController">
+		<input class="form-control" type="text" name="red" placeholder="Unesite broj redova" >
+		<input class="form-control" type="text" name="kolona" placeholder="Unesite broj kolona" >
+		<input type="hidden" name = "restoranId" value = "${restoran.id}">
+		<input class="form-control" type="submit" value="Posalji">
+	</form>
 	
-	function checkStatus(red,kolona){
-		var stolovi = [];
-		stolovi = ${kreiraniStolovi};
-		alert(stolovi.length)
-		};
-	</script>
 	
-	<table class="table borderless">
-	
-	<thead>
-		<tr>
-			<td>${sessionScope.restoran.nazivRestorana}</td>
-		</tr>
-	</thead>
-    <tbody>
-    <c:forEach begin="1" end="5" var="i">
-    <tr>
-    	<c:forEach begin="1" end="5" var="j">
-   			<td>
-	   			<form method="POST" action="AddTableController">
-	   				<input type="hidden" name="restoranId" value="${sessionScope.restoran.id}" >
-	   				<input type="hidden" name="red" value="${i}" >
-	   				<input type="hidden" name="kolona" value="${j}" >
-	   				<input type="submit" value="Nema stola"  onload="doFunction(this)" >
-	   				<script type="text/javascript">
-	   					checkStatus(${i},${j});
-	   				</script>
-	   			</form>
-   			</td>
-    	</c:forEach>
-    </tr>
-    </c:forEach>
-   	</tbody>
-	</table>
 
 
 </body>
