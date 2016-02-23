@@ -85,6 +85,7 @@ public class UpdateController extends HttpServlet {
 			
 			restoranDao.merge(restoran);
 			
+			request.getServletContext().setAttribute("restorani",restoranDao.findAll());
 			getServletContext().getRequestDispatcher("/readRestaurants.jsp").forward(request, response);
 		
 		} catch (ServletException e) {

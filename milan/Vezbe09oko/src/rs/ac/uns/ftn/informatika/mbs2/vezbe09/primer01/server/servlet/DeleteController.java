@@ -57,7 +57,8 @@ public class DeleteController extends HttpServlet {
 			doDelete(getId(request), getTableName(request));
 			
 			if (getTableName(request).equals("restoran")){
-				getServletContext().getRequestDispatcher("/ReadController").forward(request, response);
+				request.getServletContext().setAttribute("restorani",restoranDao.findAll());
+				getServletContext().getRequestDispatcher("/readRestaurants.jsp").forward(request, response);
 			}
 			else if (getTableName(request).equals("menadzer")){
 				getServletContext().getRequestDispatcher("/PrepareManagersController").forward(request, response);
@@ -108,6 +109,7 @@ public class DeleteController extends HttpServlet {
 			Integer userId = Integer.parseInt(request.getParameter("korisnikId"));
 			Integer friendId = Integer.parseInt(request.getParameter("prijateljId"));
 			ret = prijateljDao.findFriendshipByFriends(userId, friendId).toString();
+			return ret;
 		}
 		ret = request.getParameter("jelo");
 		if (ret != null){

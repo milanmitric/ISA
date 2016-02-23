@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "restoran")
@@ -49,6 +50,12 @@ public class Restoran implements Serializable{
 	private Integer brojRedovaRestorana;
 	@Column(nullable = true)
 	private Integer brojKolonaRestorana;
+	
+	@Transient
+	private Double prosecnaOcenaRestorana =-1.0;
+	
+	@Transient
+	private Double prosecnaOcenaPrijateljaRestorana = -1.0;
 
 	@OneToMany(cascade = { ALL }, fetch = LAZY, mappedBy = "restoran")
 	private Set<Sto> stolovi = new  HashSet<>();
@@ -132,6 +139,22 @@ public class Restoran implements Serializable{
 
 	public void setBrojKolonaRestorana(Integer brojKolonaRestorana) {
 		this.brojKolonaRestorana = brojKolonaRestorana;
+	}
+
+	public Double getProsecnaOcenaRestorana() {
+		return prosecnaOcenaRestorana;
+	}
+
+	public void setProsecnaOcenaRestorana(Double prosecnaOcenaRestorana) {
+		this.prosecnaOcenaRestorana = prosecnaOcenaRestorana;
+	}
+
+	public Double getProsecnaOcenaPrijateljaRestorana() {
+		return prosecnaOcenaPrijateljaRestorana;
+	}
+
+	public void setProsecnaOcenaPrijateljaRestorana(Double prosecnaOcenaPrijateljaRestorana) {
+		this.prosecnaOcenaPrijateljaRestorana = prosecnaOcenaPrijateljaRestorana;
 	}
 
 	

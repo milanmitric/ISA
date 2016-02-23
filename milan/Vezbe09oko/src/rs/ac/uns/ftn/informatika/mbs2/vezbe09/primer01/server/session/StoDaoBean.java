@@ -25,5 +25,14 @@ public class StoDaoBean extends GenericDaoBean<Sto, Integer> implements StoDaoLo
 	  List<Sto> result = (List<Sto>) q.getResultList();
 	  return result;
 	 }
+	
+	public Sto stoRestoranaSaRedIKolona(Integer id, Integer red, Integer kolona){
+		Query q = em.createQuery("SELECT s FROM Sto s WHERE s.restoran.id like :id AND s.red like :red AND s.kolona like :kolona");
+		  q.setParameter("id", id);
+		  q.setParameter("red",red);
+		  q.setParameter("kolona", kolona);
+		  Sto result = (Sto) q.getSingleResult();
+		  return result;
+	}
 
 }

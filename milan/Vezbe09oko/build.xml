@@ -136,6 +136,10 @@
 			DROP TABLE IF EXISTS sto;
 			DROP TABLE IF EXISTS prijatelj;
 			DROP TABLE IF EXISTS jelo;
+			DROP TABLE IF EXISTS rezervacija;
+			DROP TABLE IF EXISTS rezervisaniSto;
+			DROP TABLE IF EXISTS pozvaniPrijatelj;
+			DROP TABLE IF EXISTS ocena;
 			
 		</sql>
 	</target>

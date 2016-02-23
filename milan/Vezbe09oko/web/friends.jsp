@@ -13,7 +13,7 @@
 	<c:if test="${sessionScope.korisnik==null}">
 			<c:redirect url="./login.jsp" />
 	</c:if>
-	<table class="table table-striped">
+	<table class="table table-striped sortable">
 		<thead>
 			<tr>
 				<td>Ime</td>

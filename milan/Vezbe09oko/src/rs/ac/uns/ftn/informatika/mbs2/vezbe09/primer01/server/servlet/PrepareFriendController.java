@@ -62,7 +62,12 @@ public class PrepareFriendController extends HttpServlet{
 				request.setAttribute("errorMessage", errorMessage);
 			}
 			request.setAttribute("prijatelji", outList);
+			
+
 			getServletContext().getRequestDispatcher("/friends.jsp").forward(request, response);
+
+
+			
 			
 		}
 		catch (Exception e){

@@ -4,6 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<script src = "sortable.js"> </script>
 	<link href="./bootstrap.min.css" rel="stylesheet">
 	<script src = "jquery-1.11.0.js"> </script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -39,8 +40,9 @@
 <body>
 <ul>
   <li><a href="./welcomeUser.jsp">Pocetna</a></li>
-  <li><a href="./readRestaurants.jsp">Restorani</a></li>
+  <li><a href="./PrepareReadRestaurantsController">Restorani</a></li>
   <li><a href="./PrepareFriendController">Prijatelji</a></li>
+  <li><a href="./PrepareReviewController">Posjete</a></li>
   <ul style="float:right;list-style-type:none;">
     <li><a  href="./userProfile.jsp">Profil</a></li>
     <li><a href="./LogoutController">Odjava</a></li>

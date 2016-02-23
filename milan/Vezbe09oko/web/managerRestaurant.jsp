@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 </head>
 <body>
 	<jsp:include page="headerManager.jsp"/>
@@ -12,7 +13,7 @@
 			<c:redirect url="./login.jsp" />
 	</c:if>
 	
-	<table class="table table-striped" border=0>
+	<table class="table table-striped sortable " border=0>
 		<thead>
 			<th>Naziv</th>
 			<th>Vrsta restorana</th>
@@ -30,13 +31,12 @@
 		</tbody>
 	</table>
 	
-	<table class="table table-striped" >
+	<table class="table table-striped sortable" >
 		<caption>Jelovnik</caption>
 		<thead>
 			<th>Naziv</th>
 			<th>Opis</th>
 			<th>Cena</th>
-			<th>Izmeni</th>
 			<th>Obrisi</th>
 		</thead>
 		<tbody>
@@ -45,7 +45,6 @@
 					<td>${jelo.naziv}</td>
 					<td>${jelo.opis}</td>
 					<td>${jelo.cena}</td>
-					<td>Izmeni</td>
 					<td>
 						<form  method="POST" action="DeleteController" accept-charset="UTF-8">
 							<input type="hidden" name="jelo" value="${jelo.id}">
@@ -75,7 +74,7 @@
 	        <form method = "POST" action ="./CreateMealController">
 	        	<input class="form-control" name="naziv" type="text"  placeholder="Naziv" required/><br>
 	        	<input class="form-control" name="opis" type="text"  placeholder="Opis"/><br>
-	        	<input class="form-control" name="cena" type="text"  placeholder="Cena" required/><br>
+	        	<input class="form-control" name="cena" type="number"  placeholder="Cena" required/><br>
 	        	<input type="hidden" name="restoran" value="${restoran.id}">
 	        	<input class="form-control" type="submit" class = "btn bnt-default">
 	        </form>

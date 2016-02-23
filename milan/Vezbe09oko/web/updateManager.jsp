@@ -20,7 +20,7 @@
 	</c:if>
 		<form method = "POST" action ="./UpdateManagerController">
 			<div class="container">  		
-				<table class="table table-striped">
+				<table class="table table-striped sortable">
 					<tr>
 						<td>Ime <input  class="form-control" name="ime" type="text" value = "${sessionScope.menadzer.ime}"></td>
 					</tr>
@@ -28,7 +28,7 @@
 						<td>Prezime <input  class="form-control" name="prezime" type="text" value = "${sessionScope.menadzer.prezime}"></td>
 					</tr>
 					<tr>
-						<td>Korisnicko ime <input  class="form-control" type="text" name="korisnickoIme" value = "${sessionScope.menadzer.korisnickoIme}" required></td>
+						<td>Korisnicko ime <input  class="form-control" type="text" name="korisnickoIme" value = "${sessionScope.menadzer.korisnickoIme}"  required></td>
 					</tr>
 					<tr>
 						<td>Lozinka <input  class="form-control" type="text" name="lozinka" value = "${sessionScope.menadzer.lozinka}" required></td>

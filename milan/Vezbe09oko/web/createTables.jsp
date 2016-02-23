@@ -20,10 +20,10 @@
 	</c:if>
 	
 	<form method = "POST" action = "PrepareAddTablesController">
-		<input class="form-control" type="text" name="red" placeholder="Unesite broj redova" >
-		<input class="form-control" type="text" name="kolona" placeholder="Unesite broj kolona" >
+		<input class="form-control" type="text" name="red" placeholder="Unesite broj redova" pattern=[0-9]{1,3} >
+		<input class="form-control" type="text" name="kolona" placeholder="Unesite broj kolona" pattern=[0-9]{1,3}>
 		<input type="hidden" name = "restoranId" value = "${restoran.id}">
-		<input class="form-control" type="submit" value="Posalji">
+		<input class="btn btn-primary pull-left" type="submit" value="Posalji">
 	</form>
 	
 	

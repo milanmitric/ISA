@@ -18,7 +18,21 @@
 </head>
 <body>
 			
+			
+		<form method = "POST" action="./RegisterController" >
+			<input class = "form-control" type="text" name = "ime" placeholder="Ime" required>
+			<input class = "form-control" type="text" name = "prezime" placeholder="Prezime" required>
+			<input class = "form-control" type="text" name = "korisnickoIme" pattern ="[a-zA-Z0-9._\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,4}" placeholder="Korisnicko ime" required>
+			<input class = "form-control" type="password" name = "lozinka1" placeholder="Lozinka" required>
+			<input class = "form-control" type="password" name = "lozinka2" placeholder="Ponovi lozinku" required>
+			<input class = "form-control" type = "submit" value = "Posalji">
+		</form>
 		
+		
+		<c:if test="${errormessage != null}">
+			<h1>${errormessage}</h1>
+		</c:if>
+		 <%--
 		<div id="adduslugu_window">
 			
 			<div class="modal-dialog">
@@ -88,6 +102,7 @@
 			});
 	});
 	</script>
-
+	--%>
+	
 </body>
 </html>

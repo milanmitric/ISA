@@ -14,7 +14,7 @@
 </c:if>
 
 <div class="container">  		
-  		<table class="table table-striped" border=0>
+  		<table class="table table-striped sortable" border=0>
     		<thead>
      			<tr>
         			<th>Ime</th>

@@ -15,7 +15,7 @@
 	<form method="POST" action="./UpdateUserController">
 		Ime <input name="ime" type="text" class="form-control" value = "${sessionScope.korisnik.imeKorisnika}">
 		Prezime <input name = "prezime" type="text" class="form-control" value = "${sessionScope.korisnik.prezimeKorisnika}" >
-		Korisnicko ime <input required name ="korisnickoIme" type="text" class="form-control" value = "${sessionScope.korisnik.korisnickoImeKorisnika}" >
+		Korisnicko ime <pattern ="[a-zA-Z0-9._\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,4}" input required name ="korisnickoIme" type="text" class="form-control" value = "${sessionScope.korisnik.korisnickoImeKorisnika}" >
 		Lozinka <input name="lozinka" required type="text" class="form-control" value = "${sessionScope.korisnik.lozinkaKorisnika}">
 		<input type="hidden" name="korisnikId" value= "${sessionScope.korisnik.id}">
 		<input type="submit" class="form-control" value="Izmjeni">

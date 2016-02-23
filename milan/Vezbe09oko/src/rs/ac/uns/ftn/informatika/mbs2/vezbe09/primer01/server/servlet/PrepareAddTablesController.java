@@ -54,7 +54,6 @@ public class PrepareAddTablesController extends HttpServlet{
 				kolona = Integer.parseInt(request.getParameter("kolona"));
 			}
 			
-			System.out.println("Id restorana: " + id);
 			
 			if ((id != null) && (!id.equals(""))) {
 				List<Sto> kreiraniStolovi = null;
@@ -129,10 +128,7 @@ public class PrepareAddTablesController extends HttpServlet{
 				}
 			}
 		}
-		for(Sto sto:ret){
-			System.out.println("STATUS " + sto.isSlobodan());
-		}
-		
+
 		return ret;
 		
 	}

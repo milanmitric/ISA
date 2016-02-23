@@ -13,7 +13,7 @@
 			<c:redirect url="./login.jsp" />
 	</c:if>
 
-	<table class="table table-striped">
+	<table class="table table-striped sortable">
 	<tbody>
 	
 		<c:forEach var="i" begin="1" end ="${restoran.brojRedovaRestorana}">

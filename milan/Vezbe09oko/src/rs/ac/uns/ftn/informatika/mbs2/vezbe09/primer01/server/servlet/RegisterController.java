@@ -16,6 +16,9 @@ import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Korisnik;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.KorisnikDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.MenadzerDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.TestBean;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.TestLocal;
 
 public class RegisterController extends HttpServlet{
 
@@ -26,47 +29,60 @@ public class RegisterController extends HttpServlet{
 
 	@EJB
 	private KorisnikDaoLocal korisnikDao;
+	
+	@EJB
+	private MenadzerDaoLocal menadzerDao;
+	
+	@EJB
+	private TestLocal testDao;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String korisnickoIme = request.getParameter("korisnicko_ime");
-		String lozinka = request.getParameter("lozinka");
+		String korisnickoIme = request.getParameter("korisnickoIme");
+		String lozinka1 = request.getParameter("lozinka1");
+		String lozinka2 = request.getParameter("lozinka2");
 		String ime = request.getParameter("ime");
 		String prezime = request.getParameter("prezime");
 		
 		try {
-			Korisnik korisnik = korisnikDao.findKorisnikSaKorisnickimImenomILozinkom(korisnickoIme, lozinka);
-			if (korisnik != null) {	
-
+			if (korisnikDao.checkIfExists(korisnickoIme) || menadzerDao.checkIfExists(korisnickoIme)  ){
 				String errorMessage = "Postoji korisnik sa tim korisnickim imenom.";
 				request.setAttribute("errormessage", errorMessage);
 				RequestDispatcher disp = request.getRequestDispatcher("./register.jsp");
 				disp.forward(request, response);
-			}
+			} else if(!lozinka1.equals(lozinka2)){
+				String errorMessage = "Lozinke se ne poklapaju";
+				request.setAttribute("errormessage", errorMessage);
+				RequestDispatcher disp = request.getRequestDispatcher("./register.jsp");
+				disp.forward(request, response);
+				
+			} else { 
 			
-		} catch (EJBException e) {
-			if (e.getCause().getClass().equals(NoResultException.class)) {
+				StringBuilder message = new StringBuilder();
+				message.append("http://localhost:8080/Vezbe09/");
+				message.append("AddUserToDatabaseController?"
+						+ "ime="+ime
+						+ "&prezime="+prezime
+						+ "&korisnickoIme="+korisnickoIme
+						+ "&lozinka="+lozinka1);
+				try{
+					testDao.test(message.toString());
+				} catch (Exception k){
+					System.out.println(k.getMessage());
+					System.out.println(k.getCause());
+					System.out.println(k.getStackTrace());
+				}
+				
+				request.setAttribute("poruka", "Uspesno ste registrovali! Potvrdite na mejl rezervaciju!");
+				
+				getServletContext().getRequestDispatcher("/message.jsp").forward(request, response);
+				
+				
+			} 
 			
-				Korisnik noviKorisnik = new Korisnik(ime, prezime, korisnickoIme, lozinka);
-				
-				korisnikDao.persist(noviKorisnik);
-				
-				
-				HttpSession session = request.getSession(true);
-				session.setAttribute("korisnik", noviKorisnik);
-				log.info("Korisnik " + noviKorisnik.getKorisnickoImeKorisnika() + " se prijavio.");
-				getServletContext().getRequestDispatcher("/ReadController").forward(request, response);
-				
-			} else {
-				throw e;
+			}catch (Exception e){
+				System.out.println(e.getMessage());
 			}
-		} catch (ServletException e) {
-			log.error(e);
-			throw e;
-		} catch (IOException e) {
-			log.error(e);
-			throw e;
-		}
 	}
 
 	protected void doPost(HttpServletRequest request, 	HttpServletResponse response) throws ServletException, IOException {

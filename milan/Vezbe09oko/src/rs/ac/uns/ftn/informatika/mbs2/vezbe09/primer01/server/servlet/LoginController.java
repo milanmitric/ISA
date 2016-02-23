@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -16,8 +17,11 @@ import org.apache.log4j.Logger;
 
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Korisnik;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Menadzer;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.entity.Restoran;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.KorisnikDaoLocal;
 import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.MenadzerDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.OcenaDaoLocal;
+import rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.session.RestoranDaoLocal;
 
 public class LoginController extends HttpServlet {
 
@@ -30,6 +34,12 @@ public class LoginController extends HttpServlet {
 	
 	@EJB
 	private MenadzerDaoLocal menadzerDao;
+	
+	@EJB
+	private RestoranDaoLocal restoranDao;
+	
+	@EJB
+	private OcenaDaoLocal ocenaDao;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -49,7 +59,18 @@ try {
 				HttpSession session = request.getSession(true);
 				
 				session.setAttribute("korisnik", korisnik);
-				
+				ArrayList<Restoran> restorani = new ArrayList<Restoran>( restoranDao.findAll());
+				for (Restoran r : restorani){
+					try {
+						Double ocena = ocenaDao.findAvgByRestoran(r.getId());
+						System.out.println("OCENA " + ocena);
+						r.setProsecnaOcenaRestorana(ocena);
+					} catch (EJBException e){
+						System.out.println("GRESKA STRASNA ");
+					}
+					
+				}
+				request.getServletContext().setAttribute("restorani",restorani);
 				log.info("Korisnik " + korisnik.getKorisnickoImeKorisnika() + " se prijavio.");
 				getServletContext().getRequestDispatcher("/welcomeUser.jsp").forward(request, response);
 			}

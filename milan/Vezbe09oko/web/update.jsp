@@ -24,14 +24,14 @@
 	<jsp:include page="headerAdmin.jsp"/>
 		<form method = "POST" action ="./UpdateController">
 			<div class="container">  		
-				<table class="table table-striped">
+				<table class="table table-striped sortable">
 					<tr>
 						<td>Naziv <input  class="form-control" name="nazivRestorana" type="text" value = "${sessionScope.restoran.nazivRestorana}"></td>
 					</tr>
 					<tr>
 						<td>Adresa <input  class="form-control" name="adresaRestorana" type="text" value = "${sessionScope.restoran.adresaRestorana}"></td>
 					</tr>
-						<td>Email <input  class="form-control" type="text" name="mailRestorana" value = "${sessionScope.restoran.mailRestorana}"></td>
+						<td>Email <input  class="form-control" type="text" name="mailRestorana" pattern ="[a-zA-Z0-9._\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,4}" value = "${sessionScope.restoran.mailRestorana}"></td>
 					<tr>
 						<td>Telefon <input  class="form-control" type="text" name="telefonRestorana" value = "${sessionScope.restoran.telefonRestorana}"></td>
 					</tr>

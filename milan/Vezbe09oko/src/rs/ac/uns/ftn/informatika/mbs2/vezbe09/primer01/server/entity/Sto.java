@@ -38,6 +38,12 @@ public class Sto implements Serializable{
 	
 	@Transient
 	private boolean slobodan;
+	
+	@Transient
+	// 0 - slobodan
+	// 1 - trenutni korisnik rezervisao
+	// 2 - prethodno rezervisano
+	private Integer rezervisan=0;
 		
 	public Sto(){
 		super();
@@ -68,14 +74,6 @@ public class Sto implements Serializable{
 		this.restoran = restoran;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 
 	public boolean isSlobodan() {
 		return slobodan;
@@ -84,6 +82,27 @@ public class Sto implements Serializable{
 
 	public void setSlobodan(boolean slobodan) {
 		this.slobodan = slobodan;
+	}
+
+
+
+	public Integer getRezervisan() {
+		return rezervisan;
+	}
+
+
+	public void setRezervisan(Integer rezervisan) {
+		this.rezervisan = rezervisan;
+	}
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 

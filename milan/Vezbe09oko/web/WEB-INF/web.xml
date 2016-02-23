@@ -204,6 +204,63 @@
       <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.CreateMealController</servlet-class>
    </servlet>
    
+   <servlet>
+      <servlet-name>PrepareReservationController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareReservationController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>AddTableToReservedController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.AddTableToReservedController</servlet-class>
+   </servlet>
+   
+
+   <servlet>
+      <servlet-name>CancelReservationController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.CancelReservationController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>PrepareFriendReservationController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareFriendReservationController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>ReserveController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ReserveController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>AddUserToDatabaseController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.AddUserToDatabaseController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>ConfirmInvitationController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.ConfirmInvitationController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>PrepareReviewController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareReviewController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>AddReviewController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.AddReviewController</servlet-class>
+   </servlet>
+   <servlet>
+      <servlet-name>PrepareReadRestaurantsController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareReadRestaurantsController</servlet-class>
+   </servlet>
+   
+   <servlet>
+      <servlet-name>PrepareMenuController</servlet-name>
+      <servlet-class>rs.ac.uns.ftn.informatika.mbs2.vezbe09.primer01.server.servlet.PrepareMenuController</servlet-class>
+   </servlet>
+   
+   
+   
    <servlet-mapping>
       <servlet-name>PrepareUpdateManagerController</servlet-name>
       <url-pattern>/PrepareUpdateManagerController</url-pattern>
@@ -249,13 +306,60 @@
       <url-pattern>/CreateMealController</url-pattern>
    </servlet-mapping>
    
+   <servlet-mapping>
+      <servlet-name>PrepareReservationController</servlet-name>
+      <url-pattern>/PrepareReservationController</url-pattern>
+   </servlet-mapping>
    
+   <servlet-mapping>
+      <servlet-name>AddTableToReservedController</servlet-name>
+      <url-pattern>/AddTableToReservedController</url-pattern>
+   </servlet-mapping>   
    
+   <servlet-mapping>
+      <servlet-name>CancelReservationController</servlet-name>
+      <url-pattern>/CancelReservationController</url-pattern>
+   </servlet-mapping> 
    
+   <servlet-mapping>
+      <servlet-name>PrepareFriendReservationController</servlet-name>
+      <url-pattern>/PrepareFriendReservationController</url-pattern>
+   </servlet-mapping> 
    
+   <servlet-mapping>
+      <servlet-name>ReserveController</servlet-name>
+      <url-pattern>/ReserveController</url-pattern>
+   </servlet-mapping>
    
+   <servlet-mapping>
+      <servlet-name>AddUserToDatabaseController</servlet-name>
+      <url-pattern>/AddUserToDatabaseController</url-pattern>
+   </servlet-mapping>
    
+   <servlet-mapping>
+      <servlet-name>ConfirmInvitationController</servlet-name>
+      <url-pattern>/ConfirmInvitationController</url-pattern>
+   </servlet-mapping>
    
+   <servlet-mapping>
+      <servlet-name>PrepareReviewController</servlet-name>
+      <url-pattern>/PrepareReviewController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>AddReviewController</servlet-name>
+      <url-pattern>/AddReviewController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>PrepareReadRestaurantsController</servlet-name>
+      <url-pattern>/PrepareReadRestaurantsController</url-pattern>
+   </servlet-mapping>
+   
+   <servlet-mapping>
+      <servlet-name>PrepareMenuController</servlet-name>
+      <url-pattern>/PrepareMenuController</url-pattern>
+   </servlet-mapping>
    
    
    

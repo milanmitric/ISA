@@ -10,4 +10,14 @@
     </properties>
   </persistence-unit>
   
+  <persistence-unit name="Vezbe091" transaction-type="RESOURCE_LOCAL">
+    <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+    <non-jta-data-source>My Unmanaged DataSource</non-jta-data-source>
+    <properties>
+      <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
+      <property name="openjpa.jdbc.DBDictionary" value="mysql" />
+      <property name="openjpa.Log" value="DefaultLevel=WARN, Tool=INFO" />
+    </properties>
+  </persistence-unit>
+  
 </persistence>
